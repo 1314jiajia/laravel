@@ -11,8 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('/Admin/login');
+// });
+// 前台路由
+Route::resource('/Home/index','Home\Index\IndexController');
+
+// 后台登录
+	Route::resource('/Admin/Login','Admin\Login\LoginController');
+	
+// 后台路由组
+Route::group(['middleware'=>'adminLogin'],function(){
+
+	// 会员管理
+	Route::resource('/Admin/users','Admin\Users\usersController');
+
+	// 后台首页
+	Route::resource('/Admin/index','Admin\Index\IndexController');
+
+	// 无限极分类管理(递归)
+	Route::resource('/classify','Admin\Classify\ClassifyController');
+
 });
-
-
