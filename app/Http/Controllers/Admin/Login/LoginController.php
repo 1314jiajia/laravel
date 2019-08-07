@@ -45,9 +45,10 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-       
+        // 获取用户信息
         $res = $request->except('_token');
         
+        // 判断验证
         if(!$res['userName']){
 
             return back()->with('error','账号不能为空');
@@ -58,7 +59,8 @@ class LoginController extends Controller
             return back()->with('error','密码不能为空');
         
         }
-       // dd($res['userName']);
+      
+        // 获取到数据
        $info = DB::table('admin_data_users')->where('userName','=',$res['userName'])->first();
         
         if($info){
@@ -74,7 +76,7 @@ class LoginController extends Controller
                 $list = DB::select("select n.name, n.controller,n.method from user_role as ur,role_node as rn,node as n where ur.rid = rn.rid and rn.nid = n.id and uid = {$info->id}");
                 // dd($list);
                 
-                // 初始化权限
+                // 初始化权限,登录的用户都可以访问后台首页
                 $nodelist['IndexController'][] = 'index';
                 foreach($list as $v){
                     $nodelist[$v->controller][] = $v->method; 

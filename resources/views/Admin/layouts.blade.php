@@ -230,11 +230,22 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
+                      <li>
+                        <a href="#"><i class="icon-user"></i>管理员管理</a>
+                        <ul class="closed">
+                            <li><a href="/Admin/users/create">管理员添加</a></li>
+                            <li><a href="/Admin/users">管理员列表</a></li>
+                            <li><a href="/Admin/role/create">添加角色</a></li>
+                            <li><a href="/Admin/role">角色列表</a></li>
+                            <li><a href="/Admin/auth/create">权限添加</a></li>
+                            <li><a href="/Admin/auth">权限列表</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="#"><i class="icon-user"></i>会员管理</a>
                         <ul class="closed">
-                            <li><a href="/Admin/users/create">会员添加</a></li>
-                            <li><a href="/Admin/users">会员列表</a></li>
+                            <li><a href="">会员添加</a></li>
+                            <li><a href="">会员列表</a></li>
                         </ul>
                     </li>
 

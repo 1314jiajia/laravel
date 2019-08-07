@@ -27,11 +27,11 @@ class AdminLoginMiddleware
             $actionName=$func[1];
             
             // 判断方法是否存在
-        if(empty($nodelist[$controllerName]) || !in_array($actionName,$nodelist[$controllerName])){
+        // if(empty($nodelist[$controllerName]) || !in_array($actionName,$nodelist[$controllerName])){
 
-            return redirect('/Admin/index')->with('error','权限不够,需要和管理员睡觉解决!');
+        //     return redirect('/Admin/index')->with('error','权限不够,需要和管理员睡觉解决!');
 
-        }
+        // }
 
              return $next($request);
         

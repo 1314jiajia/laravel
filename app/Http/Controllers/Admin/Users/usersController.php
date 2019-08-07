@@ -70,9 +70,9 @@ class usersController extends Controller
      */
     public function edit($id)
     {
-        // $res = DB::table('admin_data_users')->where('id','=',$id)->first();
-
-        // return view('Admin.users.edit',['res'=>$res]);
+        $res = DB::table('admin_data_users')->where('id','=',$id)->first();
+        // dd($res);
+        return view('Admin.users.edit',['res'=>$res]);
     }
 
     /**
@@ -84,8 +84,14 @@ class usersController extends Controller
      */
     public function update(Request $request, $id)
     {
-            // $res = $request->all();
-            // dd($res);
+            $data = $request->except(['_method','_token']);
+            $res  = DB::table('admin_data_users')->where('id','=',$id)->update($data); 
+            if($res){
+
+                return redirect('Admin/users')->with('success','修改成功');
+            }else{
+                return back()->with('error','修改失败');
+            }
     }
 
     /**
@@ -103,4 +109,73 @@ class usersController extends Controller
              return redirect('/Admin/users')->with('error',"删除失败");
         }
     }
+
+
+    // 分配角色
+    public function userRole($id)
+    {
+        $rid = [];
+        // 根据id获取用户信息
+        $user = DB::table('admin_data_users')->where('id','=',$id)->first();
+        
+        // role 获取角色信息
+        $role = DB::table('role')->get();
+        // 获取登录用的所有权限
+        $data = DB::table('user_role')->where('uid','=',$id)->get();
+        if(empty($data)){
+           
+            return view('Admin.role.edit',['user'=>$user,'role'=>$role,'rid'=>[]]);
+        
+        }else{
+        
+            foreach($data as $v){
+
+                $rid[] = $v->rid;
+
+            }
+            // 返回带有权限的视图
+            return view('Admin.role.edit',['user'=>$user,'role'=>$role,'rid'=>$rid]);
+        }
+        
+        
+    }
+
+    public function saveRole(Request $request)
+    {
+
+            // dd($request->all());
+            // 获取到用户的uid
+            $uid =  $request->input('uid');
+            
+            // 获取到用户权限
+            
+            $rid = $_POST['rid'];
+        
+            // 删除掉原有的权限
+            DB::table('user_role')->where('uid','=',$uid)->delete();
+
+            // 把所有的信息循环入库
+            foreach($rid as $v){
+                $data['uid'] = $uid;
+                $data['rid'] = $v;
+
+                // 存入数据库 
+               $res = DB::table('user_role')->insert($data);
+               // dd($res);
+            } 
+            if($res){
+
+                return redirect('/Admin/users')->with('success','角色分配成功');
+            
+            }else{
+
+                return back()->with('error','角色分配失败');
+            }
+    }
 }
+
+
+
+
+
+
