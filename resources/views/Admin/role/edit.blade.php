@@ -17,7 +17,10 @@
          <h4>当前用户: &nbsp;&nbsp;&nbsp;{{$user->userName}}&nbsp;&nbsp;&nbsp;的角色信息</h4> 
           @foreach($role as $row)
           <ul class="mws-form-list inline">
-            <li><input type="checkbox" name="rid[]" value=" {{ $row->id}}" @if (in_array($row->id,$rid)) checked @endif >
+            <li><input type="checkbox" name="rid[]" value=" {{ $row->id}}"
+             @if 
+             (in_array($row->id,$rid))
+              checked @endif >
              <label>{{$row->name}}</label></li>  
           </ul>
           @endforeach

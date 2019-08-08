@@ -244,8 +244,8 @@
                     <li>
                         <a href="#"><i class="icon-user"></i>会员管理</a>
                         <ul class="closed">
-                            <li><a href="">会员添加</a></li>
-                            <li><a href="">会员列表</a></li>
+                            <li><a href="/Admin/huiyuan/create">会员添加</a></li>
+                            <li><a href="/Admin/huiyuan">会员列表</a></li>
                         </ul>
                     </li>
 

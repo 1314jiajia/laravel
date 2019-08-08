@@ -42,4 +42,8 @@ Route::resource('/Home/index','Home\Index\IndexController');
 
 	// 权限管理
 	Route::resource('/Admin/auth','Admin\Auth\AuthController');
+
+	// 会员管理
+	Route::resource('/Admin/huiyuan','Admin\huiyuan\UserController');
+	
 // });
