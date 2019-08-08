@@ -102,31 +102,39 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+            // if(!$_POST['nids']){
+
+            // }
         	$rid = $request->input('rid');
-        	// 获取所有权限
-    		$nids = $_POST['nids'];
+            if(isset($_POST['nids'])){
+            	// 获取所有权限
+        		$nids = $_POST['nids'];
 
-    		// 删除原有的权限
-    		DB::table('role_node')->where('rid','=',$rid)->delete();
-    		foreach($nids as $v){
-    			// nid 是权限id
-    			$data['nid'] = $v;
-    			// role_node表中的 rid 是node表中的id
-    			$data['rid'] = $rid;
- 				
- 				// 执行添加
- 				$res = DB::table('role_node')->insert($data);
+        		// 删除原有的权限
+        		DB::table('role_node')->where('rid','=',$rid)->delete();
 
-    		}
-    		if($res){
+                    foreach($nids as $v){
+        			// nid 是权限id
+        			$data['nid'] = $v;
+        			// role_node表中的 rid 是node表中的id
+        			$data['rid'] = $rid;
+     				
+     				// 执行添加
+     				$res = DB::table('role_node')->insert($data);
 
-    			return redirect('/Admin/role')->with('success','权限添加成功'); 
-    		
-    		}else{
+        		}
+        		if($res){
 
-    			return back()->with('error','权限添加失败');
-    		}
+        			return redirect('/Admin/role')->with('success','权限添加成功'); 
+        		
+        		}else{
 
+        			return back()->with('error','权限添加失败');
+        		}
+
+        }else{
+            return back()->with('error','权限不能为空');
+        }
     }
 
     /**
