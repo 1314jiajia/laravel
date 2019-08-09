@@ -229,7 +229,7 @@
             
             <!-- Main Navigation -->
             <div id="mws-navigation">
-                <ul>
+                     <ul>
                       <li>
                         <a href="#"><i class="icon-user"></i>管理员管理</a>
                         <ul class="closed">
@@ -240,7 +240,7 @@
                             <li><a href="/Admin/auth/create">权限添加</a></li>
                             <li><a href="/Admin/auth">权限列表</a></li>
                         </ul>
-                    </li>
+                     </li>
                     <li>
                         <a href="#"><i class="icon-user"></i>会员管理</a>
                         <ul class="closed">
@@ -260,8 +260,8 @@
                     <li>
                         <a href="#"><i class="icon-file"></i> 文章管理</a>
                         <ul class="closed">
-                            <li><a href="">文章添加</a></li>
-                            <li><a href="">文章列表</a></li>
+                            <li><a href="/Admin/Article/create">文章添加</a></li>
+                            <li><a href="/Admin/Article">文章列表</a></li>
                         </ul>
                     </li>
 

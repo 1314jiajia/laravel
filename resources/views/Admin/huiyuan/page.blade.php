@@ -1,15 +1,4 @@
-@extends('Admin.layouts')
-@section('body')
-
-<html>
- <head></head>
-<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
- <body>
-  <div class="mws-panel grid_8"> 
-   <div class="mws-panel-header"> 
-    <span><i class="icon-table"></i> 会员列表</span> 
-   </div> 
-   <div class="mws-panel-body no-padding"> 
+<div class="mws-panel-body no-padding"> 
     <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
       <div id="page">
      <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info"> 
@@ -31,14 +20,14 @@
         <td class=" ">{{ $v->address}}</td> 
      
         <td class=" ">
-         
+         <a href= "/" class="btn btn-info" href="">详情</a>
           <form action="/Admin/huiyuan/{{$v->id}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button>
           </form>
 
-          <a class="btn btn-info" href="/Admin/huiyuan/{{ $v->id }}/edit"><i class="icon-wrench"></i></a></td> 
+          <a class="btn btn-info" href=""><i class="icon-wrench"></i></a></td> 
          
        </tr>
         @endforeach
@@ -46,32 +35,3 @@
       </tbody>
      </table>
    </div>
-     <div class="dataTables_paginate paging_full_numbers" id="pages">
-
-      <a class="btn btn-info" onclick="()"> 上一页</a> 
-      @foreach($p as $v) 
-
-       <a class="btn btn-info" onclick="pages({{ $v }})"> {{$v}}</a> 
-     @endforeach
-       <a class="btn btn-info" onclick="()"> 下一页</a> 
-     </div>
-    </div> 
-   </div> 
-  </div>
- </body>
- <script type="text/javascript">
-
-    function pages(pages)
-    {
-      $.get('/Admin/huiyuan',{pages:pages},function(data){
-
-         $('#page').html(data);
-
-      });
-
-    }
- </script>
-</html>
-
-@endsection
-@section('title','会员列表')

@@ -12,10 +12,47 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
-    	$data = DB::table('user')->get();
-        return view('Admin.huiyuan.index',['data'=>$data]);
+    	
+    	
+    	// 获取总页数
+    	$page = DB::table('user')->count();
+    	
+    	// 获取每页几条
+    	$tot = 7;
+    	
+    	// 最大页数
+    	$maxpage = ceil($page/$tot);
+    	
+    	// 循环页数显示
+    	for($i=1;$i<=$maxpage;$i++){
+    		// 当前页
+    		$p[$i] = $i;
+    	}
+    	// 获取当前页
+    	$pages = $request->input('pages');
+    		
+    	//判断当前页是否为空,空的时候赋值为1
+    	if(empty($pages)){
+
+    		$pages = 1;
+    	
+    	}
+    	
+    	// 获取偏移量 当前页减一乘以每条显示的页数
+    	$offset = ($pages-1)*$tot;
+    	// dd($offset);
+    	
+    	// 获取当前页数据
+    	$data = DB::select("select id,name,tel,address from user limit $offset,$tot ");
+        // dd($data);
+        // 判断是否是ajax数据
+    	if($request->ajax()){
+    		return view('Admin.huiyuan.page',['data'=>$data]);
+    	}
+    	
+        return view('Admin.huiyuan.index',['data'=>$data,'p'=>$p,'pages'=>$pages]);
     }
 
     /**
@@ -68,7 +105,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+    	$res = DB::table('user')->where('id','=',$id)->first();
+    	
+        return view('Admin.huiyuan.edit',['res'=>$res]);
     }
 
     /**
@@ -80,7 +119,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except(['_token','_method']);
+        $data['created_at'] = time();
+        $data['updated_at'] = time();
+        // dd($data);
+        $res = DB::table('user')->where('id','=',$id)->update($data);
+        if($res){
+
+        	return redirect('Admin/huiyuan')->with('success','修改成功');
+        
+        }else{
+
+        	return back()->with('error','删除失败');
+       
+        }
     }
 
     /**

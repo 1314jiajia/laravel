@@ -45,5 +45,8 @@ Route::resource('/Home/index','Home\Index\IndexController');
 
 	// 会员管理
 	Route::resource('/Admin/huiyuan','Admin\huiyuan\UserController');
-	
+
+	// 文章管理
+	Route::resource('/Admin/Article','Admin\Article\ArticleController');
+
 // });

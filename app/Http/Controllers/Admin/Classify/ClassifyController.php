@@ -21,7 +21,7 @@ class ClassifyController extends Controller
         $k = $request->input('keywords');
       
         // 按条件查询回去所有参数
-       $res = DB::table('admin_index_Classify')->select(DB::raw("*,concat(path,',',id) as paths "))->orderBy('paths')->where('name','like','%'.$k.'%')->paginate(3);
+       $res = DB::table('admin_index_Classify')->select(DB::raw("*,concat(path,',',id) as paths "))->orderBy('paths')->where('name','like','%'.$k.'%')->paginate(7);
         foreach($res as $k=>$v){
             // 字符串转数组
             $arr = explode(',',$v->path);
@@ -61,12 +61,10 @@ class ClassifyController extends Controller
           // 获取添加数据
           $res = $request->except('_token');
           // $res['status'] = '1';
-          // dd($res);
+         
           // 获取pid
           $pid = $request->input('pid');
-          // dd($res);
-          // $status = $res['status'];
-            // dd($status);
+         
           if($pid==0){
               
               // 添加父级元素
@@ -77,18 +75,19 @@ class ClassifyController extends Controller
               // 获取父类信息
               $info = DB::table('admin_index_Classify')->where('id','=',$pid)->first(); 
              // dd($res);
-              // 拼接路径  
-              $res['path'] = $info->pid.','.$info->id;
+              // 拼接路径  ,path路径链接上id
+              $res['path'] = $info->path.','.$info->id;
+             
               // dd($res);
         }
 
         $info = DB::table('admin_index_Classify')->insert($res);
         if($info){
-             echo "添加成功";
-            // return  redirect('/classify')->with('success','添加成功');
+            
+            return  redirect('/classify')->with('success','添加成功');
         }else{
-            echo "添加失败";
-            // return  redirect('/classify')->with('error','添加失败');
+            
+            return  back()->with('error','添加失败');
 
         }
     }
@@ -147,11 +146,11 @@ class ClassifyController extends Controller
             $res = DB::table('admin_index_Classify')->where('id','=',$id)->delete();
             if($res){
                 
-                echo "删除成功";
+               return  redirect('/classify')->with('success','删除成功');
             
             }else{
 
-                echo "删除失败";
+              return back()->with('error','删除失败');
             }
          
 
