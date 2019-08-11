@@ -1,0 +1,1 @@
+<a href="http://www.lijinglei.com/activate?id={{$id}}">激活</a>

@@ -39,6 +39,10 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
+       
+         if(!empty($data['name'])){
+            return back()->with('error','角色名称不能为空');
+        }
         $data['status'] = '1';
         // 添加到数据库
         $res = DB::table('role')->insert($data);

@@ -58,6 +58,11 @@ class ClassifyController extends Controller
      */
     public function store(Request $request)
     {
+
+  
+        if(!empty($res['name'])){
+            return back()->with('error','分类名称不能为空');
+        }
           // 获取添加数据
           $res = $request->except('_token');
           // $res['status'] = '1';

@@ -75,6 +75,15 @@ class UserController extends Controller
     {
        $res = $request->except('_token');
        // dd($res);
+        if(!empty($res['name'])){
+            return back()->with('error','姓名不能为空');
+        }
+         if(!empty($res['tel'])){
+            return back()->with('error','电话不能为空');
+        }
+         if(!empty($res['address'])){
+            return back()->with('error','地址不能为空');
+        }
        $res['created_at'] = time();
        $res['updated_at'] = time();
        // dd($res);

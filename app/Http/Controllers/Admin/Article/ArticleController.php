@@ -43,12 +43,12 @@ class ArticleController extends Controller
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
 
-        if(empty($res['title'])){
+        if(!empty($res['title'])){
 
             return back()->with('error','标题不能为空');
         }
 
-        if(empty($res['content'])){
+        if(!empty($res['content'])){
 
             return back()->with('error','内容不能为空');
         }
@@ -100,7 +100,7 @@ class ArticleController extends Controller
         $res = $request->except(['_token','_method']);
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
-        
+
         $data = DB::table('Article')->where('id','=',$id)->update($res);
        
         if($data){
@@ -132,4 +132,24 @@ class ArticleController extends Controller
             return back()->with('error','删除失败');
         }
     }
+
+    // Ajax删除
+    public function AjaxDel(Request $request)
+    {
+            // 获取到删除数据的id
+            $arr = $request->input('arr');
+            // echo json_encode($id);
+            // 循环数值id进行删除
+            foreach($arr as $v){
+                
+             return  $res = DB::table('Article')->where('id','=',$v)->delete();
+            }
+
+          
+    } 
+
+
+
+
+
 }

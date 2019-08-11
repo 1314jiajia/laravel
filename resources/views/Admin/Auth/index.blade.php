@@ -34,7 +34,7 @@
           <form action="/Admin/auth/{{$v->id}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
-            <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button>
+            <button class="btn btn-success" type="submit">删除</button>
              
             <a href="/Admin/auth/{{$v->id}}/edit" class="btn btn-success">修改</a>
           </form>

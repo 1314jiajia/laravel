@@ -36,7 +36,21 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-       $data = $request->except('_token');
+        $data = $request->except('_token');
+       
+        if(!empty($res['name'])){
+
+            return back()->with('error','名字不能为空');
+        }
+         if(!empty($res['controller'])){
+
+            return back()->with('error','控制器不能为空');
+        }
+         if(!empty($res['method'])){
+
+            return back()->with('error','方法名不能为空');
+        }
+      
        $res  = DB::table('node')->insert($data);
         if($res){
             return redirect('/Admin/auth')->with('success','权限添加成功');

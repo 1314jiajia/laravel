@@ -39,6 +39,13 @@ class usersController extends Controller
     public function store(Request $request)
     {
         $res = $request->except('_token');
+
+        if(!empty($res['userName'])){
+            return back()->with('error','名称不能为空');
+        }
+        if(!empty($res['pwd'])){
+            return back()->with('error','密码不能为空');
+        }
         $res['created_at'] = time();
         $res['updated_at'] = time();
         $res['pwd'] = Hash::make($res['pwd']);
