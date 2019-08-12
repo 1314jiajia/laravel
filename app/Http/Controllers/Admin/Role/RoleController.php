@@ -40,7 +40,7 @@ class RoleController extends Controller
     {
         $data = $request->except('_token');
        
-         if(!empty($data['name'])){
+         if(empty($data['name'])){
             return back()->with('error','角色名称不能为空');
         }
         $data['status'] = '1';

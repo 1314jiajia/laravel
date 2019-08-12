@@ -60,7 +60,7 @@ class ClassifyController extends Controller
     {
 
   
-        if(!empty($res['name'])){
+        if(empty($res['name'])){
             return back()->with('error','分类名称不能为空');
         }
           // 获取添加数据

@@ -43,12 +43,12 @@ class ArticleController extends Controller
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
 
-        if(!empty($res['title'])){
+        if(empty($res['title'])){
 
             return back()->with('error','标题不能为空');
         }
 
-        if(!empty($res['content'])){
+        if(empty($res['content'])){
 
             return back()->with('error','内容不能为空');
         }

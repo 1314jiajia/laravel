@@ -197,13 +197,13 @@ class IndexController extends Controller
     
     }
 
-   
+    // 用户邮箱激活 
     public function activate(Request $request)
     { 
   
-        //获取id和token 
+        //获取id 
         $id=$request->input('id'); 
-         $data['status'] = 1;
+        $data['status'] = 1;
         $res = DB::table('register')->where('id','=',$id)->update($data);
         if($res){
             return '激活成功';

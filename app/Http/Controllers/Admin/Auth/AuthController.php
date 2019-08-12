@@ -38,15 +38,15 @@ class AuthController extends Controller
     {
         $data = $request->except('_token');
        
-        if(!empty($res['name'])){
+        if(empty($data['name'])){
 
             return back()->with('error','名字不能为空');
         }
-         if(!empty($res['controller'])){
+         if(empty($data['controller'])){
 
             return back()->with('error','控制器不能为空');
         }
-         if(!empty($res['method'])){
+         if(empty($data['method'])){
 
             return back()->with('error','方法名不能为空');
         }

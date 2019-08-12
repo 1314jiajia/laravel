@@ -40,10 +40,10 @@ class usersController extends Controller
     {
         $res = $request->except('_token');
 
-        if(!empty($res['userName'])){
+        if(empty($res['userName'])){
             return back()->with('error','名称不能为空');
         }
-        if(!empty($res['pwd'])){
+        if(empty($res['pwd'])){
             return back()->with('error','密码不能为空');
         }
         $res['created_at'] = time();
