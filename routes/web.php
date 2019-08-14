@@ -15,11 +15,30 @@
 //     return view('/Admin/login');
 // });
 // 前台路由
+// 首页
 Route::resource('/Home/index','Home\Index\IndexController');
+
+// 用户邮箱激活
 Route::get('/activate','Home\Index\IndexController@activate');
+
+// 前台用户登录
+Route::resource('/Home/Login','Home\Index\LoginController');
+
+// 密码找回
+Route::resource('/Home/Pwd','Home\Index\PwdController');
+
+// 密码重置路由 
+Route::post('/rePassword/{id}','Home\Index\PwdController@rePassword');
+// Route::get('/Home/Pwd/{}','Home\Index\PwdController');
+
+// 调用邮箱 
+// Route::get('/doForGet','Home\Index\PwdController@doForGet');
+
+
 
 // 前台验证码 
 Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
+
 // 后台登录
 	Route::resource('/Admin/Login','Admin\Login\LoginController');
 
@@ -60,11 +79,11 @@ Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
 // });
 
 
-	// 前台登录短信验证
-	// Route::resource('/Home/index','Home\Index\RegisterController');
+// 前台登录短信验证
+Route::resource('/Home/message','Home\Index\RegisterController');
 
-	// 测试邮件字符串发送
-	// Route::get("/send","Home\Index\RegisterController@send");
+// 测试邮件字符串发送
+// Route::get("/send","Home\Index\RegisterController@send");
 
-	// 测试邮件视图发送
-	// Route::get("/sendView","Home\Index\RegisterController@sendView");
+// 测试邮件视图发送
+// Route::get("/sendView","Home\Index\RegisterController@sendView");

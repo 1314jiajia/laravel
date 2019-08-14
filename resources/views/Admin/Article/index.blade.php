@@ -18,8 +18,13 @@
         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 140px;">批量操作</th>
           <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 140px;">ID</th>
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 192px;">标题</th>
+
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 192px;">文章内容</th>
-        
+
+        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 192px;">图片</th>
+
+        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 192px;">作者</th>
+
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 87px;">操作</th>
        </tr> 
       </thead> 
@@ -29,7 +34,9 @@
         <td ><input type="checkbox" value="{{ $v->id }}"> </td>
         <td class="">{{ $v->id }}</td> 
         <td class="">{{ $v->title }}</td> 
-        <td class=" ">{{ $v->content }}</td> 
+        <td class=" ">{!! $v->content !!}</td> 
+        <td class=" "><img src="{{ $v->pic }}"></td> 
+        <td class=" ">{{ $v->author }}</td> 
      
         <td class=" ">
   
@@ -45,7 +52,7 @@
        </tr>
        @endforeach
        <tr>
-          <td colspan="5">
+          <td colspan="7">
                 <button class="btn btn-success " id = "lijinglei" >全选</button>
                 <button class="btn btn-success "  >反选</button>
                 <button class="btn btn-success " id = "del">删除</button>

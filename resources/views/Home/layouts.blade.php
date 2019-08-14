@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>taobao jquery js lephy</title>
+    <title>淘宝首页</title>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
+    
+
     <!--scroll-head-->
     <div class="scroll-head"></div>
     <!--top-->
@@ -294,7 +296,6 @@
                 </div>
                 <a style="float: left" href="#"><img src="img/15.jpg" /></a>
             </div>
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/"  title="网站模板">网站模板</a></div>
             <!--right-sidbar-->
             <div class="right-sidebar">
                 <div class="info-box">
@@ -351,7 +352,7 @@
                     </div>
                     <!--login-->
                     <div class="login"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="login-btn" href="#"></i>登陆</a>
+                        <a class="login-btn" href="/Home/Login/create"></i>登陆</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="login-btn free" href="/Home/index/create">注册</a>
                       

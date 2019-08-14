@@ -66,8 +66,23 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-      
-      
+        $email = $request->input('email');
+        if(empty($email)){
+            return back()->with('error','邮箱不能为空');
+        }
+
+        // 邮箱正则
+        $pattern = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/";
+       
+        if(!preg_match($pattern,$email)){
+             return back()->with('error','邮箱根式不正确');
+         }
+
+        // 手机号正则 
+        // $tal = "/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/";
+        // if(!preg_match($tel,$email)){
+        //      return back()->with('error','手机号不正确');
+        //  }
         // 输入的验证码
         $data['code']  = $request->input('code');
 
@@ -84,7 +99,7 @@ class IndexController extends Controller
             $data['updated_at'] = time();
           
            
-           // dd($data);
+           // dd($data); 
             $id = DB::table('register')->insertGetId($data);
                // dd($id);
 
@@ -92,8 +107,9 @@ class IndexController extends Controller
                     
                     $res = $this->sendView($id,$data['email']);
                     // dd($res);
+                    // 返回成功直接到邮箱登录界面去激活
                     if(empty($res)){
-                        echo "邮件已发送,需登录激活";
+                       return redirect('https://mail.qq.com/cgi-bin/loginpage');
                     }else{
                         return back()->with('error','重新发送');
                     }
@@ -105,8 +121,7 @@ class IndexController extends Controller
          }else{
 
              return back()->with('error','验证码错误');
-        }
-      
+        } 
     }
 
     /**
@@ -189,7 +204,7 @@ class IndexController extends Controller
         //邮件消息生成器 $message 
         Mail::send('Home.message.page',['id'=>$id],function($message)use($email){ 
             //发送主题 
-            $message->subject('这个是用户激活你要是激活了你就给我发个邮件好不好呀'); 
+            $message->subject('这个是我发给的邮件'); 
             //接收方
             $message->to($email); 
           
@@ -205,8 +220,9 @@ class IndexController extends Controller
         $id=$request->input('id'); 
         $data['status'] = 1;
         $res = DB::table('register')->where('id','=',$id)->update($data);
+        // 激活成功之间调整到首页
         if($res){
-            return '激活成功';
+            return redirect('/Home/index');
         }
-   }
+    }
 }

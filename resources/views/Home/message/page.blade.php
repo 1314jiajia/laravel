@@ -1,1 +1,1 @@
-<a href="http://www.lijinglei.com/activate?id={{$id}}">激活</a>
+<a href="http://www.lijinglei.com/activate?id={{$id}}">请点击文字,激活您的账号!</a>
