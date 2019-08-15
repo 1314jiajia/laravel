@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Intervention\Image\ImageManager;
 use Config;
+use App\Services\OSS;//导入OSS类
 class ArticleController extends Controller
 {
     /**
@@ -39,7 +40,57 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-       
+       //--------------------------普通上传--------------------------------------------
+        // // 1. 判断文件是否上传
+        // if($request->hasFile('pic')){
+
+        // // 2. 获取文件后缀名
+        // $extension = $request->file('pic')->getClientOriginalExtension(); 
+        
+        // // 3. 随机文件名称
+        // $fileName = 'ljl'.rand(1,9999);
+        
+        // // 4. 移动上传的文件到指定目录
+        // $request->file('pic')->move(Config::get('app.app_upload'),$fileName.'.'.$extension);
+
+        // // 实例化图片类
+        // $image = new ImageManager();
+
+        // // 设置图片属性           图片地址
+        // $image->make(Config::get('app.app_upload')."/".$fileName.".".$extension)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
+        
+        // }
+
+        // // 拼装数据
+        // $res['title'] = $request->input('title');
+        // $res['content'] = $request->input('content');
+        // $res['created_at'] = date('Y-m-d H:i:s');
+        // $res['updated_at'] = date('Y-m-d H:i:s');
+        // $res['pic'] = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
+        // $res['author'] = $request->input('author');
+      
+        // if(empty($res['title'])){
+
+        //     return back()->with('error','标题不能为空');
+        // }
+
+        // if(empty($res['content'])){
+
+        //     return back()->with('error','内容不能为空');
+        // }
+        // // dd($res);
+        // $data = DB::table('Article')->insert($res);
+        
+        // if($data){
+
+        //      return redirect('/Admin/Article')->with('success','添加成功');
+        
+        // }else{
+
+        //     return back()->with('error','添加失败');
+        // }
+
+        //------------------------------------------------------------------------------------------------
         // 1. 判断文件是否上传
         if($request->hasFile('pic')){
 
@@ -48,24 +99,32 @@ class ArticleController extends Controller
         
         // 3. 随机文件名称
         $fileName = 'ljl'.rand(1,9999);
+        // 获取上传文件
+        $file     = $request->file('pic');
         
-        // 4. 移动上传的文件到指定目录
-        $request->file('pic')->move(Config::get('app.app_upload'),$fileName.'.'.$extension);
-
+        // 文件名称 
+        $newfile  = $fileName.'.'.$extension;
+        
+        // 文件路径
+        $filepath = $file->getRealPath();
+        
+        // 上传阿里云
+        OSS::upload($newfile, $filepath);
+        
         // 实例化图片类
         $image = new ImageManager();
 
-        // 设置图片属性           图片地址
-        $image->make(Config::get('app.app_upload')."/".$fileName.".".$extension)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
+        // 设置图片属性           图片连接+文件名
+        $image->make(env('AliUrl').$newfile)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
         
         }
 
         // 拼装数据
-        $res['title'] = $request->input('title');
+        $res['title']   = $request->input('title');
         $res['content'] = $request->input('content');
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
-        $res['pic'] = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
+        $res['pic']    = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
         $res['author'] = $request->input('author');
       
         if(empty($res['title'])){
@@ -88,6 +147,7 @@ class ArticleController extends Controller
 
             return back()->with('error','添加失败');
         }
+
     }
 
     /**

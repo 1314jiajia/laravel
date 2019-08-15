@@ -105,12 +105,5 @@ class PwdController extends Controller
     	}
     }
 
-    // 短信注册页面
-    
-    // public function Meassage()
-    // {
-    // 	return view('Home.Login.iphone');
-    // }
-
-
+   
 }

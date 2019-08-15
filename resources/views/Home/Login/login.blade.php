@@ -43,7 +43,7 @@
                     </li><br/> -->
                     <a class="pass-fgtpwd pass-link" href="/Home/Pwd/create">忘记密码？</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="pass-sms-btn pass-link"href="/Home/message" title="短信快捷登录" data-type="sms" id="">短信快捷登录</a><br/><br/>
+                    <a class="pass-sms-btn pass-link"href="/phone" title="短信快捷登录" data-type="sms" id="">短信快捷登录</a><br/><br/>
                     <li>
                         <input type="submit" tabindex="3" value="提交" class="btn btn-primary" />
                     </li>

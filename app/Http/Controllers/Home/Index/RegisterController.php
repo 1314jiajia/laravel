@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home\Index;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Mail;
+use DB;
+use Hash;
 class RegisterController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('Home.Login.iphone');
+        // return view('Home.Login.iphone');
     }
 
     /**
@@ -29,13 +31,33 @@ class RegisterController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *    // 手机注册
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        dd($request->all());
+              $res = $request->except(['_token','repassword','code']);
+              $data['name']   = 'ljl'.time();
+              $data['pwd']    = hash::make($res['pwd']);
+              $data['email']  = 'ljl@Google.com';
+              $data['status'] = 1;
+              $data['created_at'] = time();
+              $data['updated_at'] = time();
+              $data['phone'] = $res['phone'];
+
+              $info = DB::table('register')->insert($data);
+             
+              if($info){
+
+                    return redirect('/Home/index');
+              
+              }else{
+
+                    return back()->with('error','注册失败，请重新注册');
+              }
+
+
     }
 
     /**
@@ -114,5 +136,73 @@ class RegisterController extends Controller
         //获取id和token 
         $id=$request->input('id'); 
         $token=$request->input('token');
+    }
+
+    // 判断手机号是否唯一
+    public function checkphone( Request $request)
+    {
+        $p = $request->input('p');
+        
+        // 获取到电话的一列pluck 
+        $plucks = DB::table('register')->pluck('phone')->toArray();
+
+        // 判断手机号是否在这个数组中
+        if(in_array($p,$plucks)){
+
+            return 1;
+        
+        }else{
+
+            return 0;
+        }
+
+    }
+    
+    // 调用短信接口  
+    public function registersendphone( Request $request)
+    {   
+        // 电话号码
+        $phone = $request->input('pp');
+        
+        echo $data = sendsphone($phone);
+        
+    }
+
+    // 手机短信注册页面
+    public function phone()
+    {
+        return view('Home.Login.iphone');
+    }
+
+    // 手机验证
+   public function checkcode( Request $request)
+   {    
+         $code=$request->input("code");
+
+        if(isset($_COOKIE['pcode']) && !empty($code)){
+           
+            //获取系统的校验码
+            $pcode=$request->cookie("pcode");
+           
+            //和系统的校验码做对比
+            if($code==$pcode){
+                
+                echo 1;//校验码ok
+
+            }else{
+           
+                echo 2;//校验码有误
+           
+            }
+
+        }else if(empty($code)){
+
+                echo 3;//校验码为空
+        }else{
+                echo 4;//校验码过期
+        }
+
+
+
    }
 }

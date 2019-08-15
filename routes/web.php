@@ -84,6 +84,15 @@ Route::resource('/Home/message','Home\Index\RegisterController');
 
 // 测试邮件字符串发送
 // Route::get("/send","Home\Index\RegisterController@send");
+// 手机号唯一
+Route::get("/checkphone","Home\Index\RegisterController@checkphone");
+// 调用短信接口
+Route::get("/registersendphone","Home\Index\RegisterController@registersendphone");
+// 注册页面
+Route::get("/phone","Home\Index\RegisterController@phone");
 
-// 测试邮件视图发送
+// 短信验证码
+Route::get("/checkcode","Home\Index\RegisterController@checkcode");
+
+// 测试邮件视图发送registersendphone
 // Route::get("/sendView","Home\Index\RegisterController@sendView");
