@@ -9,6 +9,7 @@ use Intervention\Image\ImageManager;
 use Config;
 use App\Services\OSS;//导入OSS类
 use Storage; // 七牛类
+
 class ArticleController extends Controller
 {
     /**
@@ -92,7 +93,7 @@ class ArticleController extends Controller
         // }
 
         //---------------------------------------阿里云图片上传,需要手动创建文件夹?----------------------------------------
-        // // 1. 判断文件是否上传
+        // 1. 判断文件是否上传
         // if($request->hasFile('pic')){
 
         // // 2. 获取文件后缀名
@@ -114,7 +115,11 @@ class ArticleController extends Controller
         
         // // 实例化图片类
         // $image = new ImageManager();
-
+        // $dir = Config::get('app.app_upload');
+        // 判断文件夹是否存在
+        // if(!file_exists($dir)){
+        //     mkdir($dir);
+        // }
         // // 设置图片属性           图片连接+文件名
         // $image->make(env('AliUrl').$newfile)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
         
@@ -149,7 +154,7 @@ class ArticleController extends Controller
         //     return back()->with('error','添加失败');
         // }
 
-        // -------------------------七牛云图片上传-----------------------
+        // // -------------------------七牛云图片上传-----------------------
 
          // 1. 判断文件是否上传
         if($request->hasFile('pic')){
@@ -172,6 +177,13 @@ class ArticleController extends Controller
         // 实例化图片类
         $image = new ImageManager();
 
+        // 拼装本地图片地址
+        $dir = Config::get('app.app_upload');
+        
+        // 判断文件夹是否存在
+        if(!file_exists($dir)){
+            mkdir($dir);
+        }
         // 设置图片属性           图片连接+文件名
         $image->make(env('QINIU_DOMAIN').$newfile)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
         
