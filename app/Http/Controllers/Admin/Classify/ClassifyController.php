@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin\Classify;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use App\AdminModels\classifyModel;
-// use App\AdminModel\classifyModel;
 use DB;
 
 class ClassifyController extends Controller
@@ -45,7 +43,7 @@ class ClassifyController extends Controller
     {
         // 获取到数据分配到添加下面
         // 调用排序方法在最下面
-         $res = $this->getpaths();
+         $res = self::getpaths();
         // 添加分类页面
         return view('Admin.classify.add',['res'=>$res]);
     }
@@ -60,7 +58,7 @@ class ClassifyController extends Controller
     {
 
   
-        if(empty($res['name'])){
+        if(!empty($res['name'])){
             return back()->with('error','分类名称不能为空');
         }
           // 获取添加数据
@@ -163,7 +161,7 @@ class ClassifyController extends Controller
     }
 
     // 排序
-    public function getpaths()
+    public static function getpaths()
     {
           // 按条件查询回去所有参数
        $res = DB::table('admin_index_Classify')->select(DB::raw("*,concat(path,',',id) as paths "))->orderBy('paths')->get();

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManager; // 图片处理
 use Config;
 use App\Services\OSS;//导入OSS类
 use Storage; // 七牛类
+use Illuminate\Support\Facades\Redis; // redis 缓存类
+use App\AdminModels\classifyModel;   // 模型类
 
 class ArticleController extends Controller
 {
@@ -17,11 +19,50 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        $res = DB::table('Article')->get();
+        // 声明空数组
+        $arr = [];
 
-        return view('Admin.Article.index',['res'=>$res]);
+        // 存放key
+        $redisKey = 'Article:ArticleKey';
+
+        // 存放数据
+        $redisInfo = 'Article:ArticleInfo';
+
+        // 如果不存在去数据库拿给redis
+        if(Redis::exists($redisKey)){
+
+            // 取出文章中的所有id
+            $listKey = Redis::lrange($redisKey,0,-1);
+
+            // 遍历id,$v就是ID
+            foreach($listKey as $v){
+
+                $arr[] = Redis::hgetall($redisInfo.$v);
+            }   
+
+        }else{
+
+             // 第一次去数据库中去拿
+             $arr = classifyModel::get()->toArray();
+             // $arr = DB::table('Article')->get();
+           
+             // dd($arr);
+             foreach($arr as $v){   
+                 
+                // 把key写入redis
+                Redis::lpush($redisKey,$v['id']);
+
+                // 把数据存入redis,需要有id区分数据
+                Redis::hmset($redisInfo.$v['id'],$v);
+
+             }
+            
+        }
+       
+        return view('Admin.Article.index',['res'=>$arr]);
     }
 
     /**
@@ -190,28 +231,48 @@ class ArticleController extends Controller
         }
 
         // 拼装数据
+        $res['id']=$request->input("id");
         $res['title']   = $request->input('title');
         $res['content'] = $request->input('content');
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
         $res['pic']    = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
         $res['author'] = $request->input('author');
-      
-        if(empty($res['title'])){
-
-            return back()->with('error','标题不能为空');
-        }
-
-        if(empty($res['content'])){
-
-            return back()->with('error','内容不能为空');
-        }
-        // dd($res);
-        $data = DB::table('Article')->insert($res);
         
-        if($data){
+        // if(empty($res['title'])){
 
-             return redirect('/Admin/Article')->with('success','添加成功');
+        //     return back()->with('error','标题不能为空');
+        // }
+
+        // if(empty($res['content'])){
+
+        //     return back()->with('error','内容不能为空');
+        // }
+            
+        $id = DB::table('Article')->insertGetId($res);
+        // $res['id']= $id;
+        // dd($res);
+        // $info = classifyModel::create($res);
+        
+        // $id = $info->id;
+        if($id){
+            
+                // 1.存放key
+                $redisKey = 'Article:ArticleKey';
+
+                // 2.存放数据
+                $redisInfo = 'Article:ArticleInfo';
+               
+
+                // 1.1 插入一条id,就是上面的key ,$data是添加返回的id
+                Redis::rpush($redisKey,$id);
+
+                $res['id']= $id;
+                // dump($res);die;
+                // 2.2 存入数据
+               $aa =  Redis::hmset($redisInfo.$id,$res);
+               // dd($aa);
+             // return redirect('/Admin/Article')->with('success','添加成功');
         
         }else{
 
@@ -264,7 +325,7 @@ class ArticleController extends Controller
         
         }else{
 
-            return back()->with('error','删除失败');
+            return back()->with('error','修改失败');
         }
     }
 
@@ -299,9 +360,7 @@ class ArticleController extends Controller
                 
              return  $res = DB::table('Article')->where('id','=',$v)->delete();
              
-            }
-
-          
+            }       
     } 
 
 

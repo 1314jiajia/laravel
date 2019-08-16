@@ -29,18 +29,17 @@
        </tr> 
       </thead> 
       <tbody role="alert" aria-live="polite" aria-relevant="all">
-        @foreach($res as $v)
+        @foreach($res as $row)
        <tr class="odd"> 
-        <td ><input type="checkbox" value="{{ $v->id }}"> </td>
-        <td class="">{{ $v->id }}</td> 
-        <td class="">{{ $v->title }}</td> 
-        <td class=" ">{!! $v->content !!}</td> 
-        <td class=" "><img src="{{ $v->pic }}"></td> 
-        <td class=" ">{{ $v->author }}</td> 
-     
+          <td class=" "><input type="checkbox" value="{{$row['id']}}"></td> 
+        <td class="  ">{{$row['id']}}</td> 
+        <td class=" ">{{$row['title']}}</td> 
+        <td class=" ">{!!$row['content']!!}</td> 
+        <td class=" "><img src="{{$row['pic']}}"></td> 
+        <td class=" ">{{$row['author']}}</td> 
         <td class=" ">
   
-          <form action="/Admin/Article/{{$v->id}}" method="post">
+          <form action="/Admin/Article/{{$ro['id']}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <!-- <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button> -->

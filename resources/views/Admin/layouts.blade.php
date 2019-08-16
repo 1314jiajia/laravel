@@ -268,8 +268,8 @@
                     <li>
                         <a href="#"><i class="icon-file"></i> 商品管理</a>
                         <ul class="closed">
-                            <li><a href="">商品添加</a></li>
-                            <li><a href="">商品列表</a></li>
+                            <li><a href="/Admin/shop/create">商品添加</a></li>
+                            <li><a href="/Admin/shop">商品列表</a></li>
                         </ul>
                     </li>
                 </ul>

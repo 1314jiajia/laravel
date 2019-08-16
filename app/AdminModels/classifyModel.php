@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class classifyModel extends Model
 {
-   protected $table = 'admin_index_Classify';
+   protected $table = 'article';
 
-   public $timestamps = false;
+   public $timestamps = true;
 
-   protected $filable = ['name','pid','path'];
+   protected $filable = ['id','title','content','pic','author','created_at','updated_at'];
    // 分类表
   
 }

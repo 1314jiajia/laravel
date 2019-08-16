@@ -51,7 +51,6 @@ Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
 	// 后台首页
 	Route::resource('/Admin/index','Admin\Index\IndexController');
 	
-
 	// 无限极分类管理(递归)
 	Route::resource('/classify','Admin\Classify\ClassifyController');
 	
@@ -75,6 +74,9 @@ Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
 
 	// 文章类ajax删除
 	Route::get('/ArticleDel','Admin\Article\ArticleController@AjaxDel');
+
+	// 商品管理
+	Route::resource('/Admin/shop','Admin\Shop\ShopController');
 
 // });
 
