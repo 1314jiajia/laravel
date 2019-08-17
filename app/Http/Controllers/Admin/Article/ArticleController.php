@@ -42,6 +42,7 @@ class ArticleController extends Controller
 
                 $arr[] = Redis::hgetall($redisInfo.$v);
             }   
+            // dd($arr);
 
         }else{
 
@@ -59,8 +60,10 @@ class ArticleController extends Controller
                 Redis::hmset($redisInfo.$v['id'],$v);
 
              }
+
             
         }
+
        
         return view('Admin.Article.index',['res'=>$arr]);
     }
@@ -239,15 +242,15 @@ class ArticleController extends Controller
         $res['pic']    = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
         $res['author'] = $request->input('author');
         
-        // if(empty($res['title'])){
+        if(empty($res['title'])){
 
-        //     return back()->with('error','标题不能为空');
-        // }
+            return back()->with('error','标题不能为空');
+        }
 
-        // if(empty($res['content'])){
+        if(empty($res['content'])){
 
-        //     return back()->with('error','内容不能为空');
-        // }
+            return back()->with('error','内容不能为空');
+        }
             
         $id = DB::table('Article')->insertGetId($res);
         // $res['id']= $id;
@@ -270,9 +273,9 @@ class ArticleController extends Controller
                 $res['id']= $id;
                 // dump($res);die;
                 // 2.2 存入数据
-               $aa =  Redis::hmset($redisInfo.$id,$res);
+                Redis::hmset($redisInfo.$id,$res);
                // dd($aa);
-             // return redirect('/Admin/Article')->with('success','添加成功');
+             return redirect('/Admin/Article')->with('success','添加成功');
         
         }else{
 
@@ -358,9 +361,24 @@ class ArticleController extends Controller
             // 循环数值id进行删除
             foreach($arr as $v){
                 
-             return  $res = DB::table('Article')->where('id','=',$v)->delete();
-             
-            }       
+              $res = DB::table('Article')->where('id','=',$v)->delete();
+                // 1.存放key
+                $redisKey = 'Article:ArticleKey';
+
+                // 2.存放数据
+                $redisInfo = 'Article:ArticleInfo';
+
+                // 删除id
+                Redis::lrem($redisKey,1,$v);
+
+                // 删除数据
+                Redis::del($redisInfo.$v);
+
+
+            }
+
+            // 给 Ajax 返回
+            echo 1;       
     } 
 
 

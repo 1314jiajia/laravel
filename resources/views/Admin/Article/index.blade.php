@@ -39,7 +39,7 @@
         <td class=" ">{{$row['author']}}</td> 
         <td class=" ">
   
-          <form action="/Admin/Article/{{$ro['id']}}" method="post">
+          <form action="/Admin/Article/{{$row['id']}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <!-- <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button> -->
