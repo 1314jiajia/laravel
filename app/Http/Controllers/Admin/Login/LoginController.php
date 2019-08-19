@@ -94,6 +94,7 @@ class LoginController extends Controller
                 // dd($nodelist);
                 // 当前用户存入session
                 session(['nodelist'=> $nodelist]);
+                
                 return redirect('/Admin/index')->with('success','登录成功');
             
             }else{

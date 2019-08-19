@@ -18,9 +18,7 @@
           @foreach($role as $row)
           <ul class="mws-form-list inline">
             <li><input type="checkbox" name="rid[]" value=" {{ $row->id}}"
-             @if 
-             (in_array($row->id,$rid))
-              checked @endif >
+             @if(in_array($row->id,$rid)) checked  @endif 
              <label>{{$row->name}}</label></li>  
           </ul>
           @endforeach
