@@ -98,3 +98,6 @@ Route::get("/checkcode","Home\Index\RegisterController@checkcode");
 
 // 测试邮件视图发送registersendphone
 // Route::get("/sendView","Home\Index\RegisterController@sendView");
+
+// laravel 无限极分类测试
+Route::get('/category','Demo\CategoryController@index');

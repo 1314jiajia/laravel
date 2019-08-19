@@ -48,9 +48,15 @@ class ArticleController extends Controller
 
              // 第一次去数据库中去拿
              $arr = classifyModel::get()->toArray();
-             // $arr = DB::table('Article')->get();
-           
-             // dd($arr);
+             
+             // DB用法
+             // $arr = DB::table('Article')->get()->toArray();
+              
+             //    foreach($arr as $k=>$v){
+             //        $ll[$k] = (array)$v;
+             //    }
+             //     dd($ll);
+            
              foreach($arr as $v){   
                  
                 // 把key写入redis
