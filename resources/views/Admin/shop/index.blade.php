@@ -35,7 +35,7 @@
         <td class=" ">{{ $v->name }}</td> 
         <td class=" ">{{ $v->cate_id }}</td> 
         <td class=" "><img src="{{ $v->pic }}"></td> 
-        <td class=" ">{{ $v->description }}</td> 
+        <td class=" ">{!! $v->description !!}</td> 
         <td class=" ">{{ $v->num }}</td> 
         <td class=" ">{{ $v->price }}</td> 
      

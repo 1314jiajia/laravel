@@ -11,7 +11,7 @@
       <div class="mws-form-row"> 
        <label class="mws-form-label">名称:</label> 
        <div class="mws-form-item"> 
-        <input value="" type="text" class="small" name="name" /> 
+        <input value="{{ old('name') }}" type="text" class="small" name="name"  /> 
        </div> 
       </div> 
       <div class="mws-form-row"> 
@@ -30,21 +30,21 @@
        <div class="mws-form-row"> 
        <label class="mws-form-label">描述:</label> 
        <div class="mws-form-item"> 
-       <input value="" type="text" class="small" name="description" /> 
+       <input  type="text" class="small" name="description" value="{{ old('description') }}" /> 
         
        </div> 
       </div> 
         <div class="mws-form-row"> 
        <label class="mws-form-label">数量:</label> 
        <div class="mws-form-item"> 
-       <input value="" type="text" class="small" name="num" /> 
+       <input value="{{old('num')}}" type="text" class="small" name="num" /> 
         
        </div> 
       </div> 
         <div class="mws-form-row"> 
        <label class="mws-form-label">价格:</label> 
        <div class="mws-form-item"> 
-       <input value="" type="text" class="small" name="price" /> 
+       <input value="{{old('price')}}" type="text" class="small" name="price" /> 
         
        </div> 
       </div> 
