@@ -13,11 +13,11 @@ use Mail;
 class IndexController extends Controller
 {
 
-
+    // 获取无限极分类
 	 public static function getPid($pid)
      {
     	$res = DB::table('admin_index_Classify')->where('pid','=',$pid)->get();
-    	// dd($res);
+    	
     	// 声明空数组
     	$data = [];
 
@@ -36,15 +36,22 @@ class IndexController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     *  前台页面遍历
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
        
     	$res = self::getPid(0);
-        // dd($res);
-        return view('Home.layouts',['res'=>$res]);
+        // 所有顶级分类
+        $admin_index_classify = DB::table('admin_index_classify')->where('pid','=',0)->get();
+        // dd($admin_index_classify);
+        // 获取到顶级分类下面的所有商品
+        foreach($admin_index_classify as $v){
+            $shop[] = DB::table('shop')->join('admin_index_classify','shop.cate_id','=','admin_index_classify.id')->select('admin_index_classify.name as cname','admin_index_classify.id as cid','shop.name as sname','shop.id as sid','shop.price','shop.pic','shop.description')->where('shop.cate_id','=',$v->id)->get();
+        }
+        // dd($shop);
+        return view('Home.layouts',['res'=>$res,'shop'=>$shop]);
        
     }
 

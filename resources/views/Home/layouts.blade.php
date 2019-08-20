@@ -16,28 +16,28 @@
     <div class="top-wrapper">
         <div class="top-info">
             <div class="top-left">
-                <div data-toggle="arrowdown" id="arrow1" class="user-name">
+                <!-- <div data-toggle="arrowdown" id="arrow1" class="user-name">
                     <a href="#">站长素材</a>
                     <span class="down-icon"></span>
-                </div>
-                <div data-toggle="arrowdown" id="arrow2" class="msg-info">
+                </div> -->
+               <!--  <div data-toggle="arrowdown" id="arrow2" class="msg-info">
                     <i class="fa fa-envelope fa-gray"></i>
                     <a href="#">消息</a>
                     <span class="down-icon"></span>
-                </div>
-                <a class="a-float-left" href="#">手机淘宝</a>
+                </div> -->
+               <!--  <a class="a-float-left" href="#">手机淘宝</a> -->
                 <img height="34px" a-float-left src="img/qqq.gif" />
                 <!--hidden-box-->
                 <div data-toggle="hidden-box" id="nav-box1" class="user-box">
                     <img class="my-head" src="img/user-head.jpg" />
-                    <div class="my-grow">
+                   <!--  <div class="my-grow">
                         <h1><a href="#">账号管理</a>&nbsp;|&nbsp;<a href="#">退出</a></h1>
                         <p>
                             <h2><a href="#">查看我会员特权</a></h2>
                             <a href="#">我的成长</a>
                         </p>
                     </div>
-                    <p style="height: 10px; clear: both;">&nbsp;</p>
+ -->                    <p style="height: 10px; clear: both;">&nbsp;</p>
                     <div class="my-card">
                         <div class="cards-info">
                             <ul>
@@ -96,13 +96,7 @@
                     <a href="#">卖家中心</a>
                     <span class="down-icon"></span>
                 </div>
-                <a class="a-float-left" href="#">联系客户</a>
-               <!--  <div data-toggle="arrowdown" id="arrow7" class="user-name">
-                    <i class="fa fa-list-ul fa-orange"></i>
-                    <a href="#">网站导航</a>
-                    <span class="down-icon"></span>
-                </div> -->
-                <!--hidden-box-->
+               
                 <div data-toggle="hidden-box" id="nav-box3" class="my-taobao-box">
                     <ul>
                         <li>已买到的宝贝</li>
@@ -344,11 +338,19 @@
                 <div class="user-info">
                     <div class="gold-top">
                         <img width="62px" height="62px" src="img/user-head.jpg" />
+                        @if(session('email'))
                         <div class="inner-user">
-                            <h3>Hi 天之狼2011</h3>
+                            <h3>{{ session('email') }}</h3>
                             <a class="get-gold" href="#"><span class="glods"></span><span class="get-money">领淘金币抵钱</span></a>
-                            <a class="vip-home" href="#">会员俱乐部</a>
+                            <a class="vip-home" href="/Home/Login">退出</a>
                         </div>
+                        @else
+                         <div class="inner-user">
+                            
+                            <a class="get-gold" href="#"><span class="glods"></span><span class="get-money">领淘金币抵钱</span></a>
+                            
+                        </div>
+                        @endif
                     </div>
                     <!--login-->
                     <div class="login"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -510,87 +512,39 @@
   
     <!--main-->
     <div class="main">
+        @foreach($res as $v)
         <div class="main-left">
             <div class="main-title">
-                <h1>万能的淘宝<span class="show-title">下面有30个特色市场等你来逛哦！</span></h1>
+                <h1>{{$v->name}}</h1>
             </div>
          
          
             <div class="product-box">
-                <div class="inner-info">
+                 @foreach($shop as $cont)
+                 @foreach($cont as $info)
+                 @if($info->cid == $v->id)
+                <div class="inner-info" style="float: left">
+                    
                     <div>
                         <span class="line-f40">|</span>
-                        <span class="text-title">女人爱搭配</span>
-                        <span class="share-weitao">
-                            <span class="line-f40">+</span>
-                            <a href="#">关注到微淘</a>
-                        </span>
+                   
+                        <span class="text-title">{{ $info->sname }}</span>
+                       
                     </div>
                     <div class="inner-left">
-                        <img src="img/show1.png" />
-                        <h1><a href="#">有到一年雪绒坊</a></h1>
-                        <span>优雅的温柔</span>
+                        <img src="{{ $info->pic }}" />
+                        <h1>{!! $info->description !!}</h1>
+                        <span>{{$info->price}}</span>
                     </div>
-                    <div class="inner-right">
-                        <div>
-                            <a href="#">
-                                <img src="img/shooes.jpg" />
-                                <p>春夏美鞋</p>
-                            </a>
-                            <a href="#">
-                                <img src="img/c.gif" />
-                                <p>春季亮色搭</p>
-                            </a>
-                        </div>
-                        <table class="tab-inner">
-                            <tr><td><a href="#">潮流女装</a></td>
-                                <td><a href="#">小个子美搭</a></td>
-                            </tr>
-                            <tr><td><a href="#">胖MM显廋</a></td>
-                                <td><a href="#">复古多包袋</a></td>
-                            </tr>
-                        </table>
-                    </div>
+                
                 </div>
+                    @endif
+                    @endforeach
+                    @endforeach
             </div>
-            <div class="product-box">
-                <div class="inner-info">
-                    <div>
-                        <span class="line-f40">|</span>
-                        <span class="text-title">女人爱搭配</span>
-                        <span class="share-weitao">
-                            <span class="line-f40">+</span>
-                            <a href="#">关注到微淘</a>
-                        </span>
-                    </div>
-                    <div class="inner-left">
-                        <img src="img/show1.png" />
-                        <h1><a href="#">有到一年雪绒坊</a></h1>
-                        <span>优雅的温柔</span>
-                    </div>
-                    <div class="inner-right">
-                        <div>
-                            <a href="#">
-                                <img src="img/shooes.jpg" />
-                                <p>春夏美鞋</p>
-                            </a>
-                            <a href="#">
-                                <img src="img/c.gif" />
-                                <p>春季亮色搭</p>
-                            </a>
-                        </div>
-                        <table class="tab-inner">
-                            <tr><td><a href="#">潮流女装</a></td>
-                                <td><a href="#">小个子美搭</a></td>
-                            </tr>
-                            <tr><td><a href="#">胖MM显廋</a></td>
-                                <td><a href="#">复古多包袋</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            
         </div>
+        @endforeach
         <div class="main-right">
             <div class="time-go">
                

@@ -36,11 +36,7 @@
                         <label for="pwd">密码：</label>
                         <input type="password" name="pwd" value=""  size="35" class="admin_input_style" />
                     </li>
-                   <!--  <li>
-                        <label for="pwd">验证码：</label>
-                        <input type="text" name="code" value="" id="pwd" size="15" class="admin_input_style" />
-                        <img onclick="this.src='/code/captcha/{tmp}&rnd='+Math.random()" width="120px" height="40px" style="vertical-align:top;" src="/code/captcha/{tmp}">
-                    </li><br/> -->
+                  
                     <a class="pass-fgtpwd pass-link" href="/Home/Pwd/create">忘记密码？</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="pass-sms-btn pass-link"href="/phone" title="短信快捷登录" data-type="sms" id="">短信快捷登录</a><br/><br/>

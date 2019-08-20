@@ -6,7 +6,7 @@
     <span>文章修改</span> 
    </div> 
    <div class="mws-panel-body no-padding"> 
-    <form action="/Admin/Article/{{ $res->id }}" method="post" class="mws-form"> 
+    <form action="/Admin/Article/{{ $res->id }}" method="post" class="mws-form"  enctype="multipart/form-data"> 
        {{ csrf_field() }} 
       {{ method_field('PUT') }}
      <div class="mws-form-inline"> 
@@ -25,7 +25,20 @@
         
        </div> 
       </div> 
-      
+
+        <div class="mws-form-row"> 
+       <label class="mws-form-label">作者:</label> 
+       <div class="mws-form-item"> 
+        <input value="{{ $res->author }}" type="text" class="small" name="author" /> 
+       </div> 
+      </div> 
+      <div class="mws-form-row"> 
+       <label class="mws-form-label">图片:</label> 
+       <div class="mws-form-item"> 
+        <img src="{{$res->pic}}">
+        <input  type="file" class="small" name="pic" /> 
+       </div> 
+      </div> 
      <div class="mws-button-row"> 
       <input type="submit" class="btn btn-danger" value="修改" /> 
       <input type="reset" class="btn " value="重置" /> 

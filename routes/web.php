@@ -23,6 +23,8 @@ Route::get('/activate','Home\Index\IndexController@activate');
 
 // 前台用户登录
 Route::resource('/Home/Login','Home\Index\LoginController');
+// 用户退出
+Route::get('/Home/Login','Home\Index\LoginController@logout');
 
 // 密码找回
 Route::resource('/Home/Pwd','Home\Index\PwdController');

@@ -93,7 +93,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
        //--------------------------普通上传--------------------------------------------
-        // // 1. 判断文件是否上传
+        // 1. 判断文件是否上传
         // if($request->hasFile('pic')){
 
         // // 2. 获取文件后缀名
@@ -322,12 +322,47 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+                // 1. 判断文件是否上传
+        if($request->hasFile('pic')){
+
+        // 2. 获取文件后缀名
+        $extension = $request->file('pic')->getClientOriginalExtension(); 
+        
+        // 3. 随机文件名称
+        $fileName = 'ljl'.rand(1,9999);
+        
+        // 4. 移动上传的文件到指定目录
+        $request->file('pic')->move(Config::get('app.app_upload'),$fileName.'.'.$extension);
+        $dir = Config::get('app.app_upload');
+        if(!file_exists($dir)){
+            mkdir($dir);
+        }
+        // 实例化图片类
+        $image = new ImageManager();
+
+        // 设置图片属性           图片地址
+        $image->make(Config::get('app.app_upload')."/".$fileName.".".$extension)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
+        
+        }else{
+            return back()->with('error','请修改图片');
+        }
         $res = $request->except(['_token','_method']);
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
+        $res['pic'] = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
+        // // 1.存放key
+        //     $redisKey = 'Article:ArticleKey';
+
+        // // 2.存放数据
+             $redisInfo = 'Article:ArticleInfo';
+        
+        // // 修改数据
+        // Redis::lset($redisKey,$redisInfo.$id,$res);
+
+         Redis::hmset($redisInfo.$id,$res);
 
         $data = DB::table('Article')->where('id','=',$id)->update($res);
-       
+        
         if($data){
 
             return redirect('/Admin/Article')->with('success','修改成功');

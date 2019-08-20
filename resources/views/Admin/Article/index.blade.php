@@ -43,7 +43,8 @@
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <!-- <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button> -->
-            <button class="btn btn-success" >可以使用ajax删除</button>
+            <!-- <button class="btn btn-success"  readonly="readonly">请使用ajax删除</button> -->
+             <a href="/Admin/Article/{{$row['id']}}/edit" class="btn btn-success">修改</a>
           </form>
 
           

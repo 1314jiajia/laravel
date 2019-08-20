@@ -41,6 +41,9 @@ class LoginController extends Controller
         $code = $request->input('code');
         // dd($pwd);
         // 根据名字去查一条数据
+        if(empty($email)){
+            return back()->with('error','邮箱不能为空');
+        }
         $res = DB::table('register')->where('email','=',$email)->first();
         // dd($res);
        if(!Hash::check($pwd,$res->pwd)){
@@ -48,6 +51,9 @@ class LoginController extends Controller
             return back()->with('error','密码不正确');
 
        }else{
+
+            // 当前用户信息写入session
+            session(['email'=>$email]);
 
             return redirect('/Home/index');
        }
@@ -100,4 +106,13 @@ class LoginController extends Controller
     {
         //
     }
+
+    // 前台用户退出
+    public function logout( Request $request)
+    {   
+        $request->session()->pull('email');
+        return redirect('/Home/Login/create');
+    }
+
+
 }
