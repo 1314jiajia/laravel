@@ -84,7 +84,7 @@
             </div>
           </div>
           <div class="clear"></div>
-          
+          @if($req)
           @foreach($req as $data)
           <tr class="item-list">
             <!-- 购物车遍历开始 -->
@@ -120,7 +120,7 @@
                     <div class="item-price price-promo-promo">
                       <div class="price-content">
                         <div class="price-line">
-                          <em class="J_Price price-now" tabindex="0">单价{{$data['price']}}</em>
+                          <em class="J_Price price-now" style="color: red" tabindex="0">单价{{$data['price']}}</em>
                         </div>
                       </div>
                     </div>
@@ -129,16 +129,16 @@
                     <div class="amount-wrapper ">
                       <div class="item-amount ">
                         <div class="sl">
-                          <a href="javascript:void(0)" class="btn btn-info updatee" name="{{ $data['id']}}">-</a>&nbsp;
-                          <input class="text_box" type="text" value="{{ $data['num']}}" style="width:30px;" />&nbsp;
-                          <a href="javascript:void(0)" class="btn btn-info update">+</a>
+                          <a href="javascript:void(0)" class="btn btn-info updatee" name="{{ $data['id']}}">-</a>
+                          <input class="text_box" type="text" value="{{ $data['num']}}" style="width:30px;" />
+                          <a href="javascript:void(0)" class="btn btn-info update" name="{{ $data['id']}}">+</a>
                         </div>
                       </div>
                     </div>
                   </li>
                   <li class="td td-sum">
                     <div class="td-inner">
-                      <em tabindex="0" class="J_ItemSum number">总计 &nbsp;&nbsp;{{$data['price']*$data['num']}}&nbsp;</em>
+                      总计 &nbsp;<em tabindex="0" class="J_ItemSum number"> {{$data['price']*$data['num']}}</em>
                     </div>
                   </li>
                   <li class="td td-op">
@@ -172,7 +172,7 @@
             <span>全选</span>
           </div>
           <div class="operations">  
-            <a href="/delAll" hidefocus="true" class="deleteAll">全部删除</a>
+            <a href="/delAll" hidefocus="true" class="deleteAll">清理购物车</a>
             <a href="/Home/index" hidefocus="true" class="J_BatchFav">继续购物</a>
           </div>
           <div class="float-bar-right">
@@ -190,14 +190,18 @@
             </div>
             <div class="">
               {{csrf_field()}}
-                <input type="submit" value="结算" style="background-color:green;width:150px;height:100px;color:black">
+                <input type="submit" value="结算" style="background-color:#e54346;width:180px;height:52px;color:#fff">
             </div>
           </div>
         
 
 
         </div>
-    
+        @else
+              <p style="text-align: center;">购物车内暂时没有商品，登录后将显示您之前加入的商品</p>
+              <br/>
+                   <a href="/Home/index" style="color: red; text-align: center;font-size: 30px" hidefocus="true" class="J_BatchFav">继续购物</a>  
+        @endif
         <div class="footer">
           <div class="footer-hd">
             <p>
@@ -290,14 +294,44 @@
     </div>
   </body>
     <script type="text/javascript">
+     
       $('.updatee').click(function(){
+         reduce = $(this);
           // 拿到id
           var id = $(this).attr('name');
-         
+
+    
+          // Ajax 实现减减
+          $.get('/reduce',{id:id},function(data){
+            // alert(data);
+            
+            // 当前位置在减号上面,直接找到显示数值的框,并赋值val
+            reduce.next('input').val(data.num);
+            
+            // 获取祖先下级的li中的em
+            reduce.parents('li').next('li').find('em').html(data.tot);
+          
+          },'json');
       });
-      // Ajax 实现减减
-      $.get('/reduce',{id:id},function(data){
-        alert(data);
+      // 加加
+      $('.update').click(function(){
+         add = $(this);
+          // 拿到id
+          var id = $(this).attr('name');
+
+    
+          // Ajax 实现减减
+          $.get('/add',{id:id},function(data){
+            // alert(data);
+            
+            // 当前位置在减号上面,直接找到显示数值的框,并赋值val
+            add.prev('input').val(data.num);
+            
+            // 获取祖先下级的li中的em
+            add.parents('li').next('li').find('em').html(data.tot);
+          
+          },'json');
       });
+
     </script>
 </html>

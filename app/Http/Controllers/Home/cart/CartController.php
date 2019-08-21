@@ -161,17 +161,70 @@ class CartController extends Controller
         session('crat');
         return redirect('/Home/cart');
     }
-   
+
     //购物车数量减减
     public function reduce(Request $request)
     {
+           $id = $request->input('id');
 
+           $res = DB::table('shop')->where('id','=',$id)->first();
+        // 获取session中所有的商品数据
+           $goods = session('cart');
+        // 遍历
+            foreach ($goods as $key => $value) {
+                    
+                    // session中的id一样就减减
+                    if ($value['id'] == $id) {
+
+                        $goods[$key]['num'] -= 1 ;
+                        
+                        // 其他情况
+                        if($goods[$key]['num'] <= 1){
+
+                            $goods[$key]['num'] = 1;
+                        }
+
+                        // 把数据重新写入session
+                        session(['cart'=>$goods]);
+                        // echo $goods[$key]['num'];
+                        // 获取购物车商品数量
+                        $data['num'] = $goods[$key]['num'];
+                       
+                        // 总计价格 (单价乘以数量)
+                        $data['tot'] = $goods[$key]['num']*$res->price;
+                        
+                        // 转换json格式返回
+                        echo json_encode($data);
+                    }
+
+             } 
     }
 
      // 购物车数量加加
-    public function add($id)
+    public function add(Request $request)
     {
-        
+            $id = $request->input('id');
+            $res = DB::table('shop')->where('id','=',$id)->first();
+            // 获取到session中的所有商品
+             $goods = session('cart');
+             
+             foreach ($goods as $key => $value) {
+                 
+                 if( $value['id'] == $id ){
+
+                    $goods[$key]['num'] += 1;
+                    
+                    if($goods[$key]['num'] >= $res->num){
+
+                        $goods[$key]['num'] = $res->num;   
+                    }
+                    session(['cart'=>$goods]);
+                    $data['num'] = $goods[$key]['num'];
+                    $data['tot'] = $goods[$key]['num']*$res->price;
+                    echo json_encode($data);
+                 }
+
+             }
     }
 
 }

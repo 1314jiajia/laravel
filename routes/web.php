@@ -21,8 +21,10 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 	
 	// 删除购物车全部商品
 	Route::get('/delAll','Home\cart\CartController@delAll');
-	// Ajax 操作减按钮
+	// Ajax 操作加按钮
 	Route::get('/add','Home\cart\CartController@add');
+	// Ajax 操作减按钮
+	Route::get('/reduce','Home\cart\CartController@reduce');
 
 });
 
