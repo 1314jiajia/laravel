@@ -133,13 +133,16 @@ class IndexController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 商品详情页面
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
+        $info = DB::table('shop')->where('id','=',$id)->first();
+        // dd($info);
+        return view ('Home.Login.details',['info'=>$info]);
     }
 
     /**

@@ -344,21 +344,19 @@ class ArticleController extends Controller
         $image->make(Config::get('app.app_upload')."/".$fileName.".".$extension)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
         
         }else{
-            return back()->with('error','请修改图片');
+          return back()->with('error','请上传图片');
         }
         $res = $request->except(['_token','_method']);
         $res['created_at'] = date('Y-m-d H:i:s');
         $res['updated_at'] = date('Y-m-d H:i:s');
         $res['pic'] = trim(Config::get('app.app_upload')."/"."s_".$fileName.".".$extension,'.'); 
-        // // 1.存放key
+        // 1.存放key
         //     $redisKey = 'Article:ArticleKey';
 
-        // // 2.存放数据
+        // 2.存放数据
              $redisInfo = 'Article:ArticleInfo';
-        
-        // // 修改数据
-        // Redis::lset($redisKey,$redisInfo.$id,$res);
-
+      
+         // 修改redis中的数据
          Redis::hmset($redisInfo.$id,$res);
 
         $data = DB::table('Article')->where('id','=',$id)->update($res);

@@ -14,9 +14,24 @@
 // Route::get('/', function () {
 //     return view('/Admin/login');
 // });
+Route::group(['Middleware'=>'HomeLogin'],function(){
+
+	// 前台购物车
+	Route::resource('/Home/cart','Home\cart\CartController');
+	
+	// 删除购物车全部商品
+	Route::get('/delAll','Home\cart\CartController@delAll');
+	// Ajax 操作减按钮
+	Route::get('/add','Home\cart\CartController@add');
+
+});
+
+
+
 // 前台路由
 // 首页
 Route::resource('/Home/index','Home\Index\IndexController');
+
 
 // 用户邮箱激活
 Route::get('/activate','Home\Index\IndexController@activate');

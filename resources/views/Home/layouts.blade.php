@@ -16,28 +16,12 @@
     <div class="top-wrapper">
         <div class="top-info">
             <div class="top-left">
-                <!-- <div data-toggle="arrowdown" id="arrow1" class="user-name">
-                    <a href="#">站长素材</a>
-                    <span class="down-icon"></span>
-                </div> -->
-               <!--  <div data-toggle="arrowdown" id="arrow2" class="msg-info">
-                    <i class="fa fa-envelope fa-gray"></i>
-                    <a href="#">消息</a>
-                    <span class="down-icon"></span>
-                </div> -->
-               <!--  <a class="a-float-left" href="#">手机淘宝</a> -->
+            
                 <img height="34px" a-float-left src="img/qqq.gif" />
-                <!--hidden-box-->
+         
                 <div data-toggle="hidden-box" id="nav-box1" class="user-box">
                     <img class="my-head" src="img/user-head.jpg" />
-                   <!--  <div class="my-grow">
-                        <h1><a href="#">账号管理</a>&nbsp;|&nbsp;<a href="#">退出</a></h1>
-                        <p>
-                            <h2><a href="#">查看我会员特权</a></h2>
-                            <a href="#">我的成长</a>
-                        </p>
-                    </div>
- -->                    <p style="height: 10px; clear: both;">&nbsp;</p>
+                  <p style="height: 10px; clear: both;">&nbsp;</p>
                     <div class="my-card">
                         <div class="cards-info">
                             <ul>
@@ -125,8 +109,6 @@
                 </div>
                 <div data-toggle="hidden-box" id="nav-box7" class="nav-box">
                     <div class="sub-nav top-sub-nav">
-                        <!--<input type="button" class="more-btn" value="更多"/>-->
-                        <!--sub-nav-cell-->
                        
                        
                     </div>
@@ -532,7 +514,7 @@
                        
                     </div>
                     <div class="inner-left">
-                        <img src="{{ $info->pic }}" />
+                        <a href="/Home/index/{{$info->sid}}"><img src="{{ $info->pic }}" /></a>
                         <h1>{!! $info->description !!}</h1>
                         <span>{{$info->price}}</span>
                     </div>
@@ -593,25 +575,7 @@
     <div class="main-bottom">
         <div class="sub-bottom-nav">
             <h1>热卖单品</h1>
-           <!-- <div class="sub-nav-info">
-               <a href="#">s5皮套</a>|
-               <a href="#">Bose</a>|
-               <a href="#">春秋</a>|
-               <a href="#">定制</a>|
-               <a href="#">高腰裤</a>|
-               <a href="#">打底裙</a>|
-               <a href="#">文胸</a>|
-               <a href="#">春装</a>|
-               <a href="#">男鞋</a>|
-               <a href="#">iphone</a>|
-               <a href="#">婚纱</a>|
-               <a href="#">男牛仔</a>|
-               <a href="#">女T恤</a>|
-               <a href="#">针织衫</a>|
-               <a href="#">客厅灯</a>|
-               <a href="#">巧克力</a>|
-               <a href="#">更多</a>
-           </div> -->
+         
         </div>
         <div class="single-sale">
             <a href="#">
