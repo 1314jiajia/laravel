@@ -9,7 +9,7 @@ class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *  购物车商品显示
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -110,6 +110,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 购物车单挑删除
     public function destroy($id)
     {
         // 获取到session中的所有商品
@@ -153,6 +154,7 @@ class CartController extends Controller
        
     }
 
+    // 购物车删除所有数据
     public function delAll(Request $request)
     {
         if(!empty($request->session('crat'))){
@@ -226,5 +228,63 @@ class CartController extends Controller
 
              }
     }
+
+    // 计算总数和总价格
+    public function checkeds()
+    {   
+        // 获取到数值中的值?       
+        if(!empty( $arr = $_GET['arr'])){
+      
+        // 总件数
+         $zsum  = 0;
+
+        // 价格总计
+        $zmoney = 0; 
+
+        // 遍历选中的数据$v 就是勾选商品的ID
+        foreach($arr as $id){
+            // 获取session中的数据
+             $data = session('cart');
+           
+            // 遍历session中的数据 
+             foreach($data as $key => $value){
+
+                // 判断选中的商品在不在session中
+                    if($value['id'] == $id){
+                        
+                        // 获取数量
+                        $num = $data[$key]['num'];
+                       
+                        // 根据选中的ID去拿数据
+                        $res = DB::table('shop')->where('id','=',$id)->first();
+
+                        //  根据数据去拿单价
+                        $price = $res->price;
+
+                        // 获取总计
+                        $zj = $num*$price;
+
+                        // // 获取总件数
+                        $zsum+= $num;
+
+                        $zmoney+= $zj;
+                    }
+             }   
+            
+        } 
+                        // 把商品的总件数和总钱数放在数组中
+                        $info['zsum'] = $zsum; 
+                        $info['zmoney'] = $zmoney; 
+                        echo json_encode($info);
+             }else{
+                        // 没有勾选商品是给默认值
+                        $info['zsum'] = 0; 
+                        $info['zmoney'] = 0; 
+                        echo json_encode($info);
+                        
+                }
+
+    }
+
 
 }

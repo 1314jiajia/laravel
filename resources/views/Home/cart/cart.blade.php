@@ -94,7 +94,7 @@
                 <ul class="item-content clearfix">
                   <li class="td td-chk">
                     <div class="cart-checkbox ">
-                      <input class="check" id="J_CheckBox_170037950254" name="items" value="" type="checkbox">
+                      <input class="check" id="J_CheckBox_170037950254" name="items" value="{{ $data['id'] }}" type="checkbox">
                       <label for="J_CheckBox_170037950254"></label>
                     </div>
                   </li>
@@ -173,7 +173,7 @@
           </div>
           <div class="operations">  
             <a href="/delAll" hidefocus="true" class="deleteAll">清理购物车</a>
-            <a href="/Home/index" hidefocus="true" class="J_BatchFav">继续购物</a>
+            <a href="/Home/index" hidefocus="true" class="J_BatchFav" style="color: red;">继续购物</a>
           </div>
           <div class="float-bar-right">
             <div class="amount-sum">
@@ -190,7 +190,7 @@
             </div>
             <div class="">
               {{csrf_field()}}
-                <input type="submit" value="结算" style="background-color:#e54346;width:180px;height:52px;color:#fff">
+                <input type="submit" value="结算" id="jsbtn" style="background-color:#e54346;width:180px;height:52px;color:#fff">
             </div>
           </div>
         
@@ -198,7 +198,8 @@
 
         </div>
         @else
-              <p style="text-align: center;">购物车内暂时没有商品，登录后将显示您之前加入的商品</p>
+              <br/>
+              <p style="text-align: center; font-size: 20px">购物车内暂时没有商品，登录后将显示您之前加入的商品或</p>
               <br/>
                    <a href="/Home/index" style="color: red; text-align: center;font-size: 30px" hidefocus="true" class="J_BatchFav">继续购物</a>  
         @endif
@@ -332,6 +333,61 @@
           
           },'json');
       });
+      
+  // 选择所有的checkbox框
+    arr=[];
+  //选择要购买的商品
+  $("input[name='items']").change(function(){
+    
+    //判断
+    if($(this).attr("checked")){
+      id=$(this).val();
+      // alert(id);
+      //把勾选的商品id 添加到arr数组里
+      arr.push(id);
+    }else{
+      //获取没有选中的id
+      nid=$(this).val();
+      // alert(id1);
+      //删除没有选中的商品id
+      //找到元素的索引
+      Array.prototype.indexOf = function(val) {
+        for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+        }
+        return -1;
+      };
+      //通过元素的索引 利用js固有的函数删除元素
+      Array.prototype.remove = function(val) {
+        var index = this.indexOf(val);
+        if (index > -1) {
+        this.splice(index, 1);
+        }
+      };
+      //移除
+      arr.remove(nid);
+    }
 
+        // Ajax 获取选中数据
+        $.getJSON('/checkeds',{arr:arr},function(data){
+              // alert(data);
+           
+            // 总件数
+            $('#J_SelectedItemsCount').html(data.zsum);
+             // 总钱数
+             $('#J_Total').html(data.zmoney);            
+
+        });
+      });
+  $('#jsbtn').click(function(){
+
+      if($("input[name='items']").is(':checked')){
+              
+              window.location('');
+
+      }else{
+          alert('没有可结算商品');
+      }
+  });
     </script>
 </html>
