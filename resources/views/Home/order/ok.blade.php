@@ -56,7 +56,7 @@
     <img src="/Home/password/xiangmv/images/logo.png" />
    </div> 
    <div class="logoBig"> 
-    <li><img src="/Home/password/xiangmv/images/logobig.png" /></li> 
+    <!-- <li><img src="/Home/password/xiangmv/images/logobig.png" /></li>  -->
    </div> 
    <div class="search-bar pr"> 
     <a name="index_none_header_sysc" href="#"></a> 

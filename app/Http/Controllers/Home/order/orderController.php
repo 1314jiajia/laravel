@@ -30,7 +30,7 @@ class orderController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *  调用支付宝方法goodPay()
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -96,13 +96,13 @@ class orderController extends Controller
                     $subject = '这里可以自定义';
                     
                     // 金额
-                    $total_fee = '0.001';
+                    $total_fee = '0.01';
                     
                     // 描述
                     $body = 'rookie';
                    
                     // 调用支付方法
-                    pay($out_trade_no,$subject,$total_fee,$body);
+                    goodPay($out_trade_no,$subject,$total_fee,$body);
              }
         }
     }
@@ -232,8 +232,9 @@ class orderController extends Controller
         
         // 获取用户信息
            $info = DB::table('address')->where('id','=',$address_id)->first(); 
+        
         // 返回支付成功页面
-         return view('Home.order.ok',['info'=>$info,'tot'=>$tot]);
+           return view('Home.order.ok',['info'=>$info,'tot'=>$tot]);
 
          // 清除购物车,商品信息
             $request->session()->pull('cart');
