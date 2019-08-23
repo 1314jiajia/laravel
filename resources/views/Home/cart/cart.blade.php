@@ -379,11 +379,22 @@
 
         });
       });
+
+  // 订单结算操作
   $('#jsbtn').click(function(){
 
       if($("input[name='items']").is(':checked')){
+            
+            //发送ajax请求
+            $.get('/Settlement',{arr:arr},function(data){
+                if(data){
+
+                  //  有订单数据直接跳转到结算页面
+                   window.location ='/yemian';
+                }
+               
+            },'json');
               
-              window.location('');
 
       }else{
           alert('没有可结算商品');

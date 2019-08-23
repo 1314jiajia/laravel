@@ -54,6 +54,7 @@ class LoginController extends Controller
 
             // 当前用户信息写入session
             session(['email'=>$email]);
+            session(['user_id'=>$res->id]);
 
             return redirect('/Home/index');
        }
@@ -110,7 +111,10 @@ class LoginController extends Controller
     // 前台用户退出
     public function logout( Request $request)
     {   
+        // 清空所有的session信息
         $request->session()->pull('email');
+        $request->session()->pull('cart');
+        $request->session()->pull('NewGoods');
         return redirect('/Home/Login/create');
     }
 

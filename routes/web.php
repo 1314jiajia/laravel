@@ -18,10 +18,20 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 
 	// 前台购物车
 	Route::resource('/Home/cart','Home\cart\CartController');
-
 	// 购物车订单 
 	Route::resource('/Home/order','Home\order\orderController');
-	
+	// 商品地址
+	Route::resource('/Home/address','Home\address\AddressController');
+	// ajax获取城市级联
+	Route::get('/Home/address','Home\address\AddressController@address');
+	//全部地址
+	Route::get('/addressAll','Home\address\AddressController@addressAll');
+	// 购物车结算
+	Route::get('/Settlement','Home\order\orderController@Settlement');
+	// 购物车结算页面
+	Route::get('/yemian','Home\order\orderController@yemian');
+	// 支付
+	Route::get('/ShopPay','Home\order\orderController@ShopPay');
 	// 删除购物车全部商品
 	Route::get('/delAll','Home\cart\CartController@delAll');
 	// Ajax 操作加按钮
@@ -30,7 +40,10 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 	Route::get('/reduce','Home\cart\CartController@reduce');
 	// 勾选商品按钮操作
 	Route::get('/checkeds','Home\cart\CartController@checkeds');
+	//Ajax收货地址切换
+	Route::get('/changes','Home\address\AddressController@changes');
 
+	
 });
 
 
