@@ -19,7 +19,7 @@
        <div class="mws-form-item"> 
     	
         <select name = 'cate_id' class="small">
-          <option value="{{ $data->id }}">{{ $data->cate_id }}</option>
+          <option value="{{ $data->id }}">请选择</option>
           @foreach($cate as $v)
               <option value="{{ $v->id }}">{{ $v->name }}</option>
           @endforeach
@@ -51,7 +51,7 @@
         <div class="mws-form-row"> 
        <label class="mws-form-label">图片:</label> 
        <div class="mws-form-item"> 
-        <img src="{{ $data->pic }}">
+        <img   src="{{ $data->pic }} " style="height: 200px" >
        <input value="{{ $data->pic }}" type="file" class="small" name="pic" /> 
         
        </div> 
