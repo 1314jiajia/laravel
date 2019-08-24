@@ -20,7 +20,7 @@
         <td class=" ">{{ $v->address}}</td> 
      
         <td class=" ">
-         <a href= "/" class="btn btn-info" href="">详情</a>
+         <!-- <a href= "/" class="btn btn-info" href="">详情</a> -->
           <form action="/Admin/huiyuan/{{$v->id}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}

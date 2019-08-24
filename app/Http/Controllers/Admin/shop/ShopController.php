@@ -74,7 +74,7 @@ class ShopController extends Controller
             mkdir($dir);
         }
         // 设置图片属性           图片连接+文件名
-        $image->make(env('QINIU_DOMAIN').$newfile)->resize(100,100)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
+        $image->make(env('QINIU_DOMAIN').$newfile)->resize(200,200)->save(Config::get('app.app_upload').'/'."s_".$fileName.".".$extension);
         
         }else{
 

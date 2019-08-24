@@ -1,4 +1,4 @@
-.fa-gray{
+232px.fa-gray{
     margin: 0 2px;
     color: #9c9c9c;
 }
@@ -1644,7 +1644,7 @@
 .main-bottom{
     width: 1190px;
     margin: 30px auto;
-    height: 200px;
+    height: 293pxsingle;
     border: 1px solid #fff;
 }
 .sub-bottom-nav{
@@ -1671,8 +1671,8 @@
 .single-sale{
     float: left;
     margin: 0 18px 30px 22px;
-    width: 130px;
-    height: 180px;
+    width: 167px;
+    height: 221px;
 }
 .single-sale  h3{
     margin: 10px 0 8px 0;
@@ -1697,7 +1697,7 @@
 /***************************ad**********************/
 .ad{
     width: 1190px;
-    height: 105px;
+    height: 269px;
     margin: 10px auto;
     border-bottom: 1px solid #eee;
     text-align: center;

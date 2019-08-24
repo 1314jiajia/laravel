@@ -505,12 +505,15 @@
              @foreach($shop as $cont)
              @foreach($cont as $info)
              @if($info->cid == $v->id)
-        <div class="single-sale">
-              <a href="/Home/index/{{$info->sid}}"><img src="{{ $info->pic }}" /></a>
-                        <h1>{!! $info->description !!}</h1>
-                        <span>{{$info->price}}</span>
-        </div>
-       
+        <div class="single-sale" >
+            <div style="margin-top:20px;text-align: center; padding-left: 5px; position: absolute;">
+              <a href="/Home/index/{{$info->sid}}">
+                <img src="{{ $info->pic }}" /></a>
+                        <br/><h1> {!! $info->description !!}</h1>
+                        <br/>
+                        <span>价格:{{$info->price}}</span>
+             </div>
+       </div>
              @endif
             @endforeach
             @endforeach
