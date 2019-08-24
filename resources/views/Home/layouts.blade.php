@@ -508,7 +508,7 @@
         <div class="single-sale" >
             <div style="margin-top:20px;text-align: center; padding-left: 5px; position: absolute;">
               <a href="/Home/index/{{$info->sid}}">
-                <img src="{{ $info->pic }}" /></a>
+                <img  style="width: 200px;height:200px " src="{{ $info->pic }}" /></a>
                         <br/><h1> {!! $info->description !!}</h1>
                         <br/>
                         <span>价格:{{$info->price}}</span>
