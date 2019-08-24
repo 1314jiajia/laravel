@@ -51,6 +51,7 @@ class IndexController extends Controller
             $shop[] = DB::table('shop')->join('admin_index_classify','shop.cate_id','=','admin_index_classify.id')->select('admin_index_classify.name as cname','admin_index_classify.id as cid','shop.name as sname','shop.id as sid','shop.price','shop.pic','shop.description')->where('shop.cate_id','=',$v->id)->get();
         }
         // dd($shop);
+        // dd($admin_index_classify);
         return view('Home.layouts',['res'=>$res,'shop'=>$shop]);
        
     }

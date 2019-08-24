@@ -142,7 +142,7 @@ class ClassifyController extends Controller
          // 判断要删除的类别下面是否还有别的子类
          if($res>0){
          
-            return '请先删除下面的子类';
+           return  back()->with('error','请先删除下面的子类'); 
          
          }
 

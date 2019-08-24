@@ -184,7 +184,7 @@
                 <ul class="side-li">
                     <li class="s_1"><h3>{{ $value->name }}<span class="fa fa-angle-right fa-loc"></span></h3></li>  
                 </ul>
-
+                    @if(count($value->suv))
                 <!--hidden-li-box-->
                 <ul class="hiden-box">
                      
@@ -205,7 +205,7 @@
                         </div>
                    @endforeach  
                 </ul>
-               
+                @endif
                 @endforeach
             </div>
         </div>
@@ -491,205 +491,40 @@
         </div>
     </div>
     <!--main-->
-  
-    <!--main-->
-    <div class="main">
-        @foreach($res as $v)
-        <div class="main-left">
-            <div class="main-title">
-                <h1>{{$v->name}}</h1>
-            </div>
+
+    <!--main-bottom-->
+
+
+      @foreach($res as $v)
+    <div class="main-bottom">
+
+        <div class="sub-bottom-nav">
+           <h1>{{$v->name}}</h1>
          
-         
-            <div class="product-box">
-                 @foreach($shop as $cont)
-                 @foreach($cont as $info)
-                 @if($info->cid == $v->id)
-                <div class="inner-info" style="float: left">
-                    
-                    <div>
-                        <span class="line-f40">|</span>
-                   
-                        <span class="text-title">{{ $info->sname }}</span>
-                       
-                    </div>
-                    <div class="inner-left">
-                        <a href="/Home/index/{{$info->sid}}"><img src="{{ $info->pic }}" /></a>
+        </div>
+             @foreach($shop as $cont)
+             @foreach($cont as $info)
+             @if($info->cid == $v->id)
+        <div class="single-sale">
+              <a href="/Home/index/{{$info->sid}}"><img src="{{ $info->pic }}" /></a>
                         <h1>{!! $info->description !!}</h1>
                         <span>{{$info->price}}</span>
-                    </div>
-                
-                </div>
-                    @endif
-                    @endforeach
-                    @endforeach
-            </div>
-            
         </div>
-        @endforeach
-        <div class="main-right">
-            <div class="time-go">
-               
-                <div class="time-cell">
-                    <h1><a href="#" class="text_shadow">你可能新欢的店铺推荐</a></h1>
-                    <div class="inner-show">
-                        <a href="#">
-                            <img src="img/inner1.png">
-                            <p class="price-info">￥118.00</p>
-                        </a>
-                        <a href="#">
-                            <img src="img/inner2.png">
-                            <p>￥118.00</p>
-                        </a>
-                        <a href="#">
-                            <img src="img/inner3.png">
-                            <p>￥118.00</p>
-                        </a>
-                        <h3><a href="$">更多店铺上新</a><i class="fa fa-angle-right"></i></h3>
-                    </div>
-                </div>
-               
-                <!--goto-see-->
-                <h1 class="goto-see text_shadow">微淘动态<a href="#">去广场看看</a></h1>
-                <!--dynamic动态-->
-              
-                
-                <!--circle-big-->
-                <!-- <div class="circle-new">新</div>
-                <div class="circle-go">逛</div> -->
-                <!--time-circle-->
-                <div class="time-circle"></div>
-                <div class="time-circle bottom-circle"></div>
-            </div>
-            <!--fix-right-->
-            <div class="fix-right-sub">
-                <!--gogo-choose-->
-              <!--  -->
-                <!--last-->
-                
-            </div>
+       
+             @endif
+            @endforeach
+            @endforeach
 
-        </div>
+
+
     </div>
-    <!--main-bottom-->
-    <div class="main-bottom">
-        <div class="sub-bottom-nav">
-            <h1>热卖单品</h1>
-         
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-        <div class="single-sale">
-            <a href="#">
-                <img src="img/sing1.jpg" />
-                <h3>褶皱立领雪纺衫</h3>
-            </a>
-            <p><span class="orange">￥&nbsp;</span><span class="orange">129.00</span><span class="send-free">包邮</span></p>
-            <p class="gary-text"><span>￥&nbsp;</span><span><del>399.00</del></span>&nbsp;|&nbsp;<span>月消29件</span></p>
-        </div>
-    </div>
+
+
+
+  @endforeach
+
+
+
     <!--ad-->
     <div class="ad">
         <!-- <img src="img/ad.jpg" />
