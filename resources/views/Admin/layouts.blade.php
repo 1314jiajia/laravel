@@ -272,6 +272,13 @@
                             <li><a href="/Admin/shop">商品列表</a></li>
                         </ul>
                     </li>
+                      <li>
+                        <a href="#"><i class="icon-th-list"></i> 友情链接管理</a>
+                        <ul class="closed">
+                            <li><a href="/Admin/links/create">链接添加</a></li>
+                            <li><a href="/Admin/links">链接列表</a></li>
+                        </ul>
+                    </li>
                      
                 </ul>
             </div>         

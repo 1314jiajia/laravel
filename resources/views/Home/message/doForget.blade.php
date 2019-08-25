@@ -15,13 +15,13 @@
   <div id="header"> 
    <div class="header-layout"> 
     <div style="float:left;margin-top:-15px;"> 
-     <img src="/Home/password/xiangmv/images/timg1.jpg" alt="" style="height:70px" /> 
+     <!-- <img src="/Home/password/xiangmv/images/timg1.jpg" alt="" style="height:70px" />  -->
     </div> 
     <h2 class="logo-title"> 找回密码 </h2> 
     <ul class="header-nav" "="> 
-     <li class="nav-first"><a href="" target="_blank"> 注册 </a></li> 
-     <li><a href="" target="_blank"> 登录 </a></li> 
-     <li><a href="http://service.taobao.com/support/main/service_center.htm"> </a></li> 
+     <li class="nav-first"><a href="/Home/index"> 首页 </a></li> 
+ 
+     
     </ul> 
    </div> 
   </div> 

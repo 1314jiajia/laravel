@@ -30,7 +30,7 @@
    <ul class="message-r"> 
     <div class="topMessage home">
      <div class="menu-hd">
-      <a href="http://www.lijinglei.com/Home/index" class="h">商城首页</a>
+      <a href="/Home/index" class="h">商城首页</a>
      </div>
     </div> 
     <div class="topMessage my-shangcheng">

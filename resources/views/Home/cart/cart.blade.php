@@ -101,7 +101,7 @@
                   <li class="td td-item">
                     <div class="item-pic">
                       <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-                        <img src="{{ $data['pic']}}" class="itempic J_ItemImg"></a>
+                        <img src="{{ $data['pic']}}" style="height:100px" class="itempic J_ItemImg"></a>
                     </div>
                     <div class="item-info">
                       <div class="item-basic-info">
@@ -169,7 +169,7 @@
               <input class="check-all check" id="J_SelectAllCbx2" name="select-all" value="true" type="checkbox">
               <label for="J_SelectAllCbx2"></label>
             </div>
-            <span>全选</span>
+            <span onclick = quanxuan()>全选</span>
           </div>
           <div class="operations">  
             <a href="/delAll" hidefocus="true" class="deleteAll">清理购物车</a>
@@ -288,7 +288,7 @@
       </div>
     <!--引导 -->
     <div class="navCir">
-      <li><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
+      <li><a href="/Home/index"><i class="am-icon-home "></i>首页</a></li>
       <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
       <li class="active"><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>  
       <li><a href="person/index.html"><i class="am-icon-user"></i>我的</a></li>         
@@ -400,5 +400,10 @@
           alert('没有可结算商品');
       }
   });
+ 
+
+
+
+
     </script>
 </html>

@@ -15,7 +15,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -68,7 +68,7 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -80,7 +80,7 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //更新数据
     }
 
     /**
@@ -126,4 +126,9 @@ class AddressController extends Controller
         echo json_encode($res);
     }
 
+    // 个人中心收货地址
+    public function addre()
+    {
+        return view('Home.wallet.addre');
+    }
 }

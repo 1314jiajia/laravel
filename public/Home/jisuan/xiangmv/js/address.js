@@ -39,6 +39,9 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
  
 //地址选择
 				$(function() {
+					// 设置第一个地址为默认值
+					$(".user-addresslist:first").addClass("defaultAddr");
+					
 					$(".user-addresslist").click(function() {
 						$(this).addClass("defaultAddr").siblings().removeClass("defaultAddr");
 					});
@@ -65,7 +68,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 			$(document).ready(function($) {
 	
 				var $ww = $(window).width();
-	
+		
+					
 				$('.theme-login').click(function() {
 //					禁止遮罩层下面的内容滚动
 					$(document.body).css("overflow","hidden");

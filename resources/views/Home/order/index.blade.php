@@ -17,7 +17,7 @@
     <div class="topMessage"> 
      <div class="menu-hd"> 
         @if(session('email'))
-          <a href="login.html" target="_top" class="h">欢淫{{session('email')}}</a> 
+          <a href="login.html" target="_top" class="h">Hello{{session('email')}}</a> 
           <a href="/homelogin" target="_top">退出</a> 
         @else
           <a href="/homelogin/create" target="_top" class="h">亲，请登录</a> 
@@ -29,7 +29,7 @@
    <ul class="message-r"> 
     <div class="topMessage home"> 
      <div class="menu-hd">
-      <a href="#" target="_top" class="h">商城首页</a>
+      <a href="/Home/index"  class="h">商城首页</a>
      </div> 
     </div> 
     <div class="topMessage my-shangcheng"> 
@@ -80,10 +80,15 @@
      <ul> 
       <div class="per-border"></div> 
       <!-- 收货地址开头 -->
-      @if(!empty($addre))
-      @foreach($addre as $data)
+      @if(empty($addre))
+       你还没有收货地址
+       @else
+      
+         @foreach($addre as $data)
+      
+        
       <!-- defaultAddr 这个是默认选中的样式 uid地址id -->
-      <li class="user-addresslist" uid="{{ $data->id }}"> 
+      <li class="user-addresslist " id="li" uid="{{ $data->id }}"> 
        <div class="address-left"> 
         <div class="user"> 
          <span class="buy-address-detail"> 姓名:</span>
@@ -113,8 +118,6 @@
        </div> </li> 
        <!-- 收货地址结尾 -->
        @endforeach
-       @else
-        你还没有收货地址
         @endif
       <div class="per-border"></div> 
      </ul> 
@@ -184,7 +187,7 @@
          <div class="pay-phone"> 
           <li class="td td-item"> 
            <div class="item-pic"> 
-            <a href="#" class="J_MakePoint"> <img src="{{ $ll['pic']}}" class="itempic J_ItemImg" /></a> 
+            <a href="#" class="J_MakePoint"> <img src="{{ $ll['pic']}}" style="height:100px" class="itempic J_ItemImg" /></a> 
            </div> 
            <div class="item-info"> 
             <div class="item-basic-info"> 
@@ -257,7 +260,10 @@
 
        <!-- 选择地址开始 -->
         <div class="box"> 
-         <div tabindex="0" id="holyshit267" class="realPay">
+          @if(empty($user))
+          需添加寄货地址
+          @else
+            <div tabindex="0" id="holyshit267" class="realPay">
           <em class="t">实付款：</em> 
           <span class="price g_price "> <span>&yen;</span> <em class="style-large-bold-red " id="tot">{{$tot}}</em> </span> 
          </div> 
@@ -265,7 +271,10 @@
           <p class="buy-footer-address"> 寄送至：<span class="buy-line-title buy-line-title-type" id="address">{{$user->AddressFetails}}</span>  </p> 
           <p class="buy-footer-address"> <span class="buy-line-title" ></span>姓名: <span class="buy-address-detail"> <span class="buy-user" id="name" style="color: red">{{$user->name}} </span> <span class="buy-phone" id="tel">{{$user->tel}}</span> </span> </p> 
          </div> 
-        </div>
+        
+          @endif
+          </div>
+         
         <!-- 选择地址结束 -->
         <form action="/Home/order" method="post">
           {{csrf_field()}}
@@ -443,6 +452,7 @@
             $('#name').html(data.name);
             $('#tel').html(data.tel);
         },'json');
-    });
+    }); 
+
 
 </script>

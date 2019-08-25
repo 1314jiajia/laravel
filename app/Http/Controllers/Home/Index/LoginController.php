@@ -15,12 +15,13 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+       
     }
-
+   
+    
     /**
      * Show the form for creating a new resource.
-     *
+     *  登录界面
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -117,6 +118,5 @@ class LoginController extends Controller
         $request->session()->pull('NewGoods');
         return redirect('/Home/Login/create');
     }
-
 
 }

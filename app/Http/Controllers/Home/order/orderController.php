@@ -36,6 +36,7 @@ class orderController extends Controller
      */
     public function store(Request $request)
     {
+        
         // 地址
         $data = $request->except('_token');
         

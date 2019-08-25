@@ -105,5 +105,11 @@ class PwdController extends Controller
     	}
     }
 
+    public function Secretprotection(Request $request)
+    {
+        $id = $request->input('id');
+        // dd($id);
+        return view('Home.message.doForget',['id'=>$id]);
+    }
    
 }

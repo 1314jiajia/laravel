@@ -20,8 +20,15 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 	Route::resource('/Home/cart','Home\cart\CartController');
 	// 购物车订单 
 	Route::resource('/Home/order','Home\order\orderController');
+	
+	// 个人中心
+	Route::resource('/Home/wallet','Home\wallet\walletController');
+	// 个人中心订单管理
+	Route::get('/Home/wallet','Home\wallet\walletController@orders');
 	// 商品地址
 	Route::resource('/Home/address','Home\address\AddressController');
+	// (个人中心地址也在这个路由中)	
+	Route::get('/Home/addre','Home\address\AddressController@addre');
 	// ajax获取城市级联
 	Route::get('/Home/address','Home\address\AddressController@address');
 	//全部地址
@@ -52,26 +59,27 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 // 首页
 Route::resource('/Home/index','Home\Index\IndexController');
 
+// 个人中心修改
+Route::resource('/Home/geren','Home\Index\gerenController');
+
 
 // 用户邮箱激活
 Route::get('/activate','Home\Index\IndexController@activate');
 
 // 前台用户登录
 Route::resource('/Home/Login','Home\Index\LoginController');
+
 // 用户退出
 Route::get('/Home/Login','Home\Index\LoginController@logout');
 
 // 密码找回
 Route::resource('/Home/Pwd','Home\Index\PwdController');
 
+// 密保找回
+Route::post('/Home/Pwd','Home\Index\PwdController@Secretprotection');
+
 // 密码重置路由 
 Route::post('/rePassword/{id}','Home\Index\PwdController@rePassword');
-// Route::get('/Home/Pwd/{}','Home\Index\PwdController');
-
-// 调用邮箱 
-// Route::get('/doForGet','Home\Index\PwdController@doForGet');
-
-
 
 // 前台验证码 
 Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
@@ -84,6 +92,8 @@ Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
 
 	// 管理员管理
 	Route::resource('/Admin/users','Admin\Users\usersController');
+	// 友情链接添加
+	Route::resource('/Admin/links','Admin\links\linksController');
 
 	// 后台首页
 	Route::resource('/Admin/index','Admin\Index\IndexController');

@@ -61,52 +61,10 @@
             <!--top-right-->
             <div class="top-right">
                 <div data-toggle="arrowdown" id="arrow3" class="user-name">
-                    <a href="#">我的淘宝</a>
-                    <span class="down-icon"></span>
+                    <a href="/Home/wallet">个人中心</a>
+                   
                 </div>
-                <div data-toggle="arrowdown" id="arrow4" class="user-name">
-                    <i class="fa fa-shopping-cart fa-orange"></i>
-                    <a href="#">购物车</a>
-                    <span class="down-icon"></span>
-                </div>
-                <div data-toggle="arrowdown" id="arrow5" class="user-name">
-                    <i class="fa fa-star fa-gray"></i>
-                    <a href="#">收藏夹</a>
-                    <span class="down-icon"></span>
-                </div>
-                <a class="a-float-left" href="#">商品分类</a>
-                <span class="vertical-line">|</span>
-                <div data-toggle="arrowdown" id="arrow6" class="user-name">
-                    <a href="#">卖家中心</a>
-                    <span class="down-icon"></span>
-                </div>
-               
-                <div data-toggle="hidden-box" id="nav-box3" class="my-taobao-box">
-                    <ul>
-                        <li>已买到的宝贝</li>
-                        <li>新欢</li>
-                        <li>我的足迹</li>
-                        <li>我的上新</li>
-                        <li>我的优惠</li>
-                    </ul>
-                </div>
-                <div data-toggle="hidden-box" id="nav-box4" class="shopping-box">
-                    <span>您购物车里还没有任何宝贝。</span><a class="check-shopp" href="#">查看我的购物车</a>
-                </div>
-                <div data-toggle="hidden-box" id="nav-box5" class="get-box">
-                    <ul>
-                        <li>收藏的宝贝</li>
-                        <li>收藏的店铺</li>
-                    </ul>
-                </div>
-                <div data-toggle="hidden-box" id="nav-box6" class="center-box">
-                    <ul>
-                        <li>已卖出的宝贝</li>
-                        <li>出售中的宝贝</li>
-                        <li>卖家服务市场</li>
-                        <li>卖家培训中心</li>
-                    </ul>
-                </div>
+              
                 <div data-toggle="hidden-box" id="nav-box7" class="nav-box">
                     <div class="sub-nav top-sub-nav">
                        
@@ -567,21 +525,12 @@
     <!--footer-->
     <div class="footer">
         <div class="footer-right">
+            <br/>
+            <h2>友情链接</h2>
             <div class="footer-nav">
-                <a href="#">阿里巴巴集团</a>|
-                <a href="#">阿里巴巴国际站</a>|
-                <a href="#">阿里巴巴中国站</a>|
-                <a href="#">全球速卖通</a>|
-                <a href="#">淘宝网</a>|
-                <a href="#">天猫</a>|
-                <a href="#">聚划算</a>|
-                <a href="#">一淘</a>|
-                <a href="#">阿里妈妈</a>|
-                <a href="#">阿里云计算</a>|
-                <a href="#">云OS</a>|
-                <a href="#">万网</a>|
-                <a href="#">支付宝</a>|
-                <a href="#">来往</a>
+                @foreach($link as $v)
+                <a href="http://{{$v->link}}">{{$v->name}}</a>|
+                @endforeach
             </div>
             <div class="about-tao">
                 <a href="#">关于淘宝</a>
