@@ -76,7 +76,8 @@ class linksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $res = DB::table('links')->where('id','=',$id)->first();
+        return view('Admin.links.edit',['res'=>$res]);
     }
 
     /**
@@ -88,7 +89,26 @@ class linksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except(['_token','_method']);
+        // dd($data);
+        if(empty($data['name'])){
+            return back()->with('error','名称不能为空');
+        }
+        if(empty($data['link'])){
+            return back()->with('error','名称不能为空');
+        }
+        
+        $res = DB::table('links')->where('id','=',$id)->update($data);
+        
+        if($res){
+        
+            return redirect('/Admin/links')->with('success','添加成功');
+        
+        }else{
+
+            return back()->with('error','添加失败');
+        }
+        
     }
 
     /**

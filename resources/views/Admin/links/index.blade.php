@@ -38,7 +38,7 @@
             {{csrf_field()}}
             {{method_field("DELETE")}}
             <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button>
-         
+            <a href="/Admin/links/{{$link->id}}/edit" class="btn btn-success">修改</a>
           </form>
 
           </td>
