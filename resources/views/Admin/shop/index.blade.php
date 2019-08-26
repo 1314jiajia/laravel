@@ -34,7 +34,7 @@
         <td class=" ">{{ $v->id }}</td> 
         <td class=" ">{{ $v->name }}</td> 
         <td class=" ">{{ $v->cate_id }}</td> 
-        <td class=" "><img src="{{ $v->pic }}"></td> 
+        <td class=" "><img src="{{ $v->pic }}" style="height: 80px"></td> 
         <td class=" ">{!! $v->description !!}</td> 
         <td class=" ">{{ $v->num }}</td> 
         <td class=" ">{{ $v->price }}</td> 
@@ -57,12 +57,7 @@
    </div>
      <div class="dataTables_paginate paging_full_numbers" id="pages">
 
-      <a class="btn btn-info" onclick="()"> 上一页</a> 
-      
-
-       <!-- <a class="btn btn-info" onclick="pages()"> </a>  -->
-    
-       <a class="btn btn-info" onclick="()"> 下一页</a> 
+        {{ $data->links() }}
      </div>
     </div> 
    </div> 

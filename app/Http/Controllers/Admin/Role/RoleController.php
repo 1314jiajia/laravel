@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 class RoleController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-    	$role = DB::table('role')->get();
+    	$role = DB::table('role')->paginate(4);
     	return view('Admin.role.index',['role'=>$role]);
         
     }

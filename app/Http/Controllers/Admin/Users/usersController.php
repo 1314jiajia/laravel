@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Hash;
 use DB;
+use Illuminate\Pagination\Paginator; // 分页类
+
 class usersController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class usersController extends Controller
      */
     public function index()
     {
-        $res = DB::table('admin_data_users')->get();
+        $res = DB::table('admin_data_users')->paginate(4);
 
         return view('Admin.users.index',['res'=>$res]);
     }

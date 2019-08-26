@@ -19,7 +19,7 @@ class ClassifyController extends Controller
         $k = $request->input('keywords');
       
         // 按条件查询回去所有参数
-       $res = DB::table('admin_index_Classify')->select(DB::raw("*,concat(path,',',id) as paths "))->orderBy('paths')->where('name','like','%'.$k.'%')->paginate(7);
+       $res = DB::table('admin_index_Classify')->select(DB::raw("*,concat(path,',',id) as paths "))->orderBy('paths')->where('name','like','%'.$k.'%')->paginate(2);
         foreach($res as $k=>$v){
             // 字符串转数组
             $arr = explode(',',$v->path);

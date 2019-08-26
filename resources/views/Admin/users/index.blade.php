@@ -27,14 +27,16 @@
         <td class=" ">{{$v->userName}}</td> 
      
         <td class=" ">
-         <a class="btn btn-info" href="/role/{{$v->id}}">分配角色</a>
+         <a class=" btn btn-success" href="/role/{{$v->id}}">分配角色</a>
+          <br/>
           <form action="/Admin/users/{{$v->id}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
-            <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button>
+
+            <button class="btn btn-success" type="submit">删除管理</button>
           </form>
 
-          <a class="btn btn-info" href="/Admin/users/{{$v->id}}/edit"><i class="icon-wrench"></i></a></td> 
+          <a class="btn btn-info" href="/Admin/users/{{$v->id}}/edit">修改按钮</a></td> 
          
        </tr>
        @endforeach
@@ -42,7 +44,7 @@
       </tbody>
      </table>
      <div class="dataTables_paginate paging_full_numbers" id="pages">
-    
+        {{ $res->links() }}
      </div>
     </div> 
    </div> 

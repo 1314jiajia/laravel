@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Intervention\Image\ImageManager;
 use Config;
+use Illuminate\Pagination\LengthAwarePaginator;
 class spicController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class spicController extends Controller
      */
     public function index()
     {
-        $spic = DB::table('spic')->get();
+        $spic = DB::table('spic')->paginate(3);
          return view('Admin.spic.index',['spic'=>$spic]);
     }
 

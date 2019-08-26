@@ -10,6 +10,7 @@ use Storage;
 use DB;
 use Config;
 use Markdown;
+use Illuminate\Pagination\LengthAwarePaginator; // 分页类
 class ShopController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class ShopController extends Controller
      */
     public function index()
     {   
-        $data = DB::table('shop')->get();
+        $data = DB::table('shop')->paginate(5);
         return view('Admin.shop.index',['data'=>$data]);
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManager;
 use Config;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 class picController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class picController extends Controller
      */
     public function index()
     {
-         $pic = DB::table('pic')->get();
+         $pic = DB::table('pic')->paginate(4);
          return view('Admin.pic.index',['pic'=>$pic]);
     }
 

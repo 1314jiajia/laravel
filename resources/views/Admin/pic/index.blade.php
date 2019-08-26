@@ -49,7 +49,7 @@
       </tbody>
      </table>
      <div class="dataTables_paginate paging_full_numbers" id="pages">
-    
+        {{ $pic->links() }}
      </div>
     </div> 
    </div> 

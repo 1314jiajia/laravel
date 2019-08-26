@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -14,8 +15,8 @@ class AuthController extends Controller
      */
     public function index()
     {   
-        $res = DB::table('node')->get();
-       return view('Admin.Auth.index',['res'=>$res]);
+        $res = DB::table('node')->paginate(4);;
+        return view('Admin.Auth.index',['res'=>$res]);
     }
 
     /**

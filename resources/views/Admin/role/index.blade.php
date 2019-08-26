@@ -30,10 +30,10 @@
           <form action="/Admin/role/{{$v->id}}" method="post">
             {{csrf_field()}}
             {{method_field("DELETE")}}
-            <button class="btn btn-success" type="submit"><i class="icon-trash"></i></button>
+            <button class="btn btn-success" type="submit">删除权限</button>
           </form>
 
-          <a class="btn btn-info" href="/Admin/role/{{$v->id}}/edit"><i class="icon-wrench">权限分配</i></a></td> 
+          <a class="btn btn-info" href="/Admin/role/{{$v->id}}/edit">权限分配</a></td> 
          
        </tr>
        @endforeach
@@ -41,7 +41,7 @@
       </tbody>
      </table>
      <div class="dataTables_paginate paging_full_numbers" id="pages">
-    
+      {{ $role->links() }}
      </div>
     </div> 
    </div> 

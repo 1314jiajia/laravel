@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\links;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class linksController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class linksController extends Controller
      */
     public function index()
     {
-        $res = DB::table('links')->get();
+        $res = DB::table('links')->paginate(3);
         // dd($res);
         return view('Admin.links.index',['res'=>$res]);
     }
