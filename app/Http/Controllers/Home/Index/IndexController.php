@@ -61,8 +61,7 @@ class IndexController extends Controller
 
               // 前台子轮播图
              $spic = DB::table('spic')->get();
-                // dd($shop);
-                // dd($res);
+                // dd($spic);
              return view('Home.layouts',['res'=>$res,'shop'=>$shop,'link'=>$link,'pic'=>$pic,'spic'=>$spic]);
        
     }
@@ -114,13 +113,13 @@ class IndexController extends Controller
             $data['pwd'] = Hash::make($data['pwd']); 
             $data['status'] = 0;
             $data['name']='jl'.mt_rand(1,9999);
+            $data['phone'] = '138'.mt_rand(1,99999999);
             $data['created_at'] = time();
-            $data['updated_at'] = time();
-          
-           
+            $data['updated_at'] = time(); 
            // dd($data); 
-            $id = DB::table('register')->insertGetId($data);
-               // dd($id);
+           
+             $id = DB::table('register')->insertGetId($data);
+               // dd($id);die;
 
                 if($id){
                     
