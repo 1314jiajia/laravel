@@ -475,11 +475,7 @@
             @endforeach
             @endforeach
 
-
-
     </div>
-
-
 
   @endforeach
 

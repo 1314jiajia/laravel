@@ -61,7 +61,8 @@ class IndexController extends Controller
 
               // 前台子轮播图
              $spic = DB::table('spic')->get();
-                // dd($spic);
+                // dd($shop);
+                // dd($res);
              return view('Home.layouts',['res'=>$res,'shop'=>$shop,'link'=>$link,'pic'=>$pic,'spic'=>$spic]);
        
     }
