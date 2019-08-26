@@ -8,6 +8,7 @@
 						<hr>
 						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails" >
 							@foreach($res as $v)
+							@if(session('user_id') == $v->id )
 							<li class="user-addresslist defaultAddr">
 								
 								<p class="new-tit new-p-re">
@@ -35,6 +36,7 @@
 
 							          
 							</li>
+							@endif
 						@endforeach
 							
 						</ul>

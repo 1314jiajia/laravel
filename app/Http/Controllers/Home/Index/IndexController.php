@@ -52,12 +52,17 @@ class IndexController extends Controller
             foreach($admin_index_classify as $v){
                 $shop[] = DB::table('shop')->join('admin_index_classify','shop.cate_id','=','admin_index_classify.id')->select('admin_index_classify.name as cname','admin_index_classify.id as cid','shop.name as sname','shop.id as sid','shop.price','shop.pic','shop.description')->where('shop.cate_id','=',$v->id)->get();
             }
-            $link = DB::table('links')->get();
-             return view('Home.layouts',['res'=>$res,'shop'=>$shop,'link'=>$link]);
-       
-        // dd($shop);
-        // dd($admin_index_classify);
-       
+
+             // 前台友情链接   
+             $link = DB::table('links')->get();
+             
+             // 前台轮播图
+             $pic = DB::table('pic')->get();
+
+              // 前台子轮播图
+             $spic = DB::table('spic')->get();
+                // dd($spic);
+             return view('Home.layouts',['res'=>$res,'shop'=>$shop,'link'=>$link,'pic'=>$pic,'spic'=>$spic]);
        
     }
 

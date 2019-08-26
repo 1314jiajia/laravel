@@ -18,10 +18,10 @@
      <div class="menu-hd"> 
         @if(session('email'))
           <a href="login.html" target="_top" class="h">Hello{{session('email')}}</a> 
-          <a href="/homelogin" target="_top">退出</a> 
+          <a href="/Home/Login/create" target="_top">退出</a> 
         @else
-          <a href="/homelogin/create" target="_top" class="h">亲，请登录</a> 
-          <a href="/homeregister/create" target="_top">免费注册</a>
+          <a href="/Home/Login/create" target="_top" class="h">亲，请登录</a> 
+          <a href="/Home/index/create" target="_top">免费注册</a>
         @endif  
      </div> 
     </div> 
@@ -34,17 +34,17 @@
     </div> 
     <div class="topMessage my-shangcheng"> 
      <div class="menu-hd MyShangcheng">
-      <a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+      <!-- <a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a> -->
      </div> 
     </div> 
     <div class="topMessage mini-cart"> 
      <div class="menu-hd">
-      <a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a>
+      <!-- <a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a> -->
      </div> 
     </div> 
     <div class="topMessage favorite"> 
      <div class="menu-hd">
-      <a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a>
+      <!-- <a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a> -->
      </div> 
     </div>
    </ul> 
@@ -318,6 +318,7 @@
      <div class="am-form-group"> 
       <label for="user-name" class="am-form-label">收货人</label> 
       <div class="am-form-content"> 
+        <!-- <input type="hidden" name="address_id"> -->
        <input type="text" id="user-name" name="name" placeholder="收货人" /> 
       </div> 
      </div> 

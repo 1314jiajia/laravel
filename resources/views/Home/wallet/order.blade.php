@@ -150,9 +150,9 @@
 				<div class="th th-amount">
 					合计
 				</div>
-				<div class="th th-status">
+				<!-- <div class="th th-status">
 					交易状态
-				</div>
+				</div> -->
 				<div class="th th-change">
 					交易操作
 				</div>
@@ -222,9 +222,9 @@
 					<div class="move-right">
 						<li class="td td-status">
 							<div class="item-status">
-								<p class="Mystatus">交易成功</p>
-								<p class="order-info"><a href="orderinfo.html">订单详情</a></p>
-								<p class="order-info"><a href="logistics.html">查看物流</a></p>
+								<!-- <p class="Mystatus"> </p> -->
+								<!-- <p class="order-info"><a href="orderinfo.html">订单详情</a></p> -->
+								<!-- <p class="order-info"><a  href="logistics.html">查看物流</a></p> -->
 							</div>
 						</li>
 						<li class="td td-change">

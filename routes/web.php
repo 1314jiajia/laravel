@@ -21,6 +21,7 @@ Route::group(['Middleware'=>'HomeLogin'],function(){
 	// 购物车订单 
 	Route::resource('/Home/order','Home\order\orderController');
 	
+	
 	// 个人中心
 	Route::resource('/Home/wallet','Home\wallet\walletController');
 	// 个人中心订单管理
@@ -92,8 +93,14 @@ Route::get('/code/captcha/{tmp}', 'Home\Index\IndexController@captcha');
 
 	// 管理员管理
 	Route::resource('/Admin/users','Admin\Users\usersController');
+	
 	// 友情链接添加
 	Route::resource('/Admin/links','Admin\links\linksController');
+
+	// 轮播图
+	Route::resource('/Admin/pic','Admin\pic\picController');
+	// 子轮播轮播图
+	Route::resource('/Admin/spic','Admin\pic\spicController');
 
 	// 后台首页
 	Route::resource('/Admin/index','Admin\Index\IndexController');

@@ -40,6 +40,7 @@ class AddressController extends Controller
        $data['user_id'] = session('user_id');
        $data['created_at'] = time();
        $data['updated_at'] = time();
+       // dd($data);
        $res = DB::table('Address')->insert($data);
        if($res){
 

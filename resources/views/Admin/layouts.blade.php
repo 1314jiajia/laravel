@@ -279,6 +279,16 @@
                             <li><a href="/Admin/links">链接列表</a></li>
                         </ul>
                     </li>
+                      <li>
+                        <a href="#"><i class="icon-th-list"></i> 轮播图管理</a>
+                        <ul class="closed">
+                            <li><a href="/Admin/pic/create">图片添加</a></li>
+                            <li><a href="/Admin/pic">图片列表</a></li>
+                    
+                            <li><a href="/Admin/spic/create">子图片添加</a></li>
+                            <li><a href="/Admin/spic">子图片列表</a></li>
+                        </ul>
+                    </li>
                      
                 </ul>
             </div>         

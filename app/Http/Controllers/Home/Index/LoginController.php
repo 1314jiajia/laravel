@@ -114,6 +114,7 @@ class LoginController extends Controller
     {   
         // 清空所有的session信息
         $request->session()->pull('email');
+        $request->session()->pull('user_id');
         $request->session()->pull('cart');
         $request->session()->pull('NewGoods');
         return redirect('/Home/Login/create');

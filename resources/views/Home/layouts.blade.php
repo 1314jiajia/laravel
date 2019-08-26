@@ -190,11 +190,9 @@
                 <!--content-->
                 <div class="content">
                     <ul class="imgBox">
-                        <li><a href="#"><img src="img/1.jpg"></a></li>
-                        <li><a href="#"><img src="img/2.jpg"></a></li>
-                        <li><a href="#"><img src="img/3.jpg"></a></li>
-                        <li><a href="#"><img src="img/4.jpg"></a></li>
-                        <li><a href="#"><img src="img/5.jpg"></a></li>
+                       @foreach($pic as $p)
+                        <li><a href="#"><img src="{{$p->pic}}"></a></li>
+                       @endforeach
                     </ul>
                     <div class="currentNum">
                         <span class="imgNum mark-color"></span>
@@ -210,12 +208,13 @@
                 <!--content-down-->
                 <div class="content-down">
                     <ul class="imgBox1">
+                        @foreach($spic as $sp)
                         <li>
-                            <a href="#"><img src="img/01.png" /></a>
-                            <a href="#"><img src="img/02.jpg" /></a>
-                            <a href="#"><img src="img/03.png" /></a>
-                            <a href="#"><img src="img/04.png" /></a>
+                            <a href="#"><img src="{{$sp->spic}}" /></a>
+                            
                         </li>
+                        @endforeach
+
                        
                     </ul>
                     <div class="currentNum-down">
